@@ -1,0 +1,22 @@
+{
+  "name": "doubao-vs-naiwa",
+  "version": "0.1.0",
+  "private": true,
+  "description": "豆包大战奶蛙 —— 植物大战僵尸恶搞版（非商用开源，MIT）",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "assets:slice": "node scripts/slice-sprites.mjs",
+    "assets:bg": "node scripts/prepare-bg.mjs",
+    "assets:home": "node scripts/prepare-home.mjs",
+    "assets:others": "node scripts/prepare-others.mjs"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.0",
+    "typescript": "^5.9.0",
+    "vite": "^7.1.0"
+  }
+}

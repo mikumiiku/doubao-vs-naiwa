@@ -1,0 +1,83 @@
+{
+  "refHeight": 220,
+  "units": {
+    "douxian_shooter": {
+      "idle": {
+        "frames": 6,
+        "fps": 4,
+        "anchor": [
+          0,
+          0
+        ]
+      },
+      "attack": {
+        "frames": 7,
+        "fps": 5,
+        "anchor": [
+          6.9,
+          14.6
+        ]
+      }
+    },
+    "hemian_doubao": {
+      "idle": {
+        "frames": 6,
+        "fps": 4,
+        "anchor": [
+          0,
+          0
+        ]
+      },
+      "produce": {
+        "frames": 8,
+        "fps": 5,
+        "anchor": [
+          -4.5,
+          -1.9
+        ]
+      }
+    },
+    "laugh_frog": {
+      "walk": {
+        "frames": 6,
+        "fps": 5,
+        "anchor": [
+          0,
+          0
+        ]
+      },
+      "attack": {
+        "frames": 5,
+        "fps": 5,
+        "anchor": [
+          6.1,
+          -9.2
+        ]
+      },
+      "idle": {
+        "frames": 6,
+        "fps": 4,
+        "anchor": [
+          -7.2,
+          -3.1
+        ]
+      },
+      "push": {
+        "frames": 5,
+        "fps": 5,
+        "anchor": [
+          2,
+          -5.1
+        ]
+      },
+      "death": {
+        "frames": 5,
+        "fps": 4,
+        "anchor": [
+          -7.2,
+          2
+        ]
+      }
+    }
+  }
+}
