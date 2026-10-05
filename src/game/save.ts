@@ -11,7 +11,6 @@ import type { Assets } from '../core/assets';
 import { LEVELS } from './config';
 import { Attacker, Defender, DoughBall, Mower, Projectile } from './entities';
 import { Game } from './game';
-import { EGG_STORY } from './eggstory';
 import { EGG_RHYTHM } from './eggrhythm';
 import { ATTACKERS, DEFENDERS } from './units';
 
@@ -284,10 +283,8 @@ export function restoreBattle(assets: Assets, saved: SavedBattle): Game {
   // 短版小游戏没有三分钟谱面，旧对局从新谱面起点进入，正式解锁进度照常保留。
   if (game.invasion && saved.eggRulesVersion !== EGG_RHYTHM.version) return game;
   if (saved.invasion) game.invasion = { ...saved.invasion, eggs: saved.invasion.eggs.map((egg) => ({ ...egg })) };
-  if (game.invasion) {
-    game.eggDialogue = saved.eggDialogue ?? null;
-    if (game.eggDialogue !== null) game.eggDialogue = Math.max(0, Math.min(EGG_STORY.length - 1, Math.floor(game.eggDialogue)));
-  }
+  game.eggDialogue = saved.eggDialogue ?? null;
+  if (game.eggDialogue !== null) game.eggDialogue = Math.max(0, Math.min(game.story.length - 1, Math.floor(game.eggDialogue)));
   game.conveyor = saved.conveyor ?? game.conveyor;
   if (game.conveyor) game.conveyor.selected = null;
 
@@ -298,7 +295,7 @@ export function restoreBattle(assets: Assets, saved: SavedBattle): Game {
   game.doughsResolved = saved.doughsResolved;
   game.firstFrogAt = saved.firstFrogAt;
 
-  game.mowers = saved.mowers.map((m) => {
+  game.mowers = saved.mowers.filter((m) => game.activeRows.includes(m.row)).map((m) => {
     const mower = new Mower(m.row, m.x, m.y);
     mower.state = m.state as Mower['state'];
     mower.t = m.t;

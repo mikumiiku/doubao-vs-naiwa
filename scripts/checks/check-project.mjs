@@ -52,6 +52,9 @@ for (const portrait of ['greeting', 'teaching', 'ready']) {
   checkFile(`public/assets/dialogue/${portrait}.png`);
 }
 
+for (const background of ['day', 'day-one', 'day-three', 'day-four']) checkFile(`public/assets/bg/${background}.png`);
+for (const source of ['一行草坪', '三行草坪']) checkFile(`assets/backgrounds/${source}.png`);
+
 const manifest = readJson('public/assets/sprites/manifest.json');
 let frames = 0;
 for (const [unit, animations] of Object.entries(manifest.units)) {

@@ -1,6 +1,5 @@
 import type { Assets } from '../core/assets';
 import type { Game } from './game';
-import { EGG_STORY } from './eggstory';
 import './eggdialogue.css';
 
 /** 演出只管理DOM与焦点；冻结、进度和读档归Game负责。 */
@@ -15,6 +14,7 @@ export class EggDialogueView {
   private readonly line: HTMLElement;
   private readonly cue: HTMLElement;
   private readonly counter: HTMLElement;
+  private readonly chapter: HTMLElement;
   private readonly back: HTMLButtonElement;
   private readonly next: HTMLButtonElement;
 
@@ -30,7 +30,7 @@ export class EggDialogueView {
     this.root.setAttribute('aria-describedby', 'egg-story-line');
     this.root.innerHTML = `<div class="egg-dialogue-stage">
       <img class="egg-dialogue-portrait" alt="豆包" width="1024" height="1536">
-      <div class="egg-dialogue-heading"><span>第五关 · 奶蛋入侵</span><h1 id="egg-story-title"></h1><p class="egg-dialogue-cue"></p></div>
+      <div class="egg-dialogue-heading"><span></span><h1 id="egg-story-title"></h1><p class="egg-dialogue-cue"></p></div>
       <div class="egg-dialogue-paper"><strong class="egg-dialogue-name">豆包</strong>
         <p id="egg-story-line" aria-live="polite"></p>
         <div class="egg-dialogue-actions"><span class="egg-dialogue-counter"></span><button type="button" data-back>上一句</button><button type="button" data-next>下一句</button></div>
@@ -40,6 +40,7 @@ export class EggDialogueView {
     this.line = this.root.querySelector('#egg-story-line')!;
     this.cue = this.root.querySelector('.egg-dialogue-cue')!;
     this.counter = this.root.querySelector('.egg-dialogue-counter')!;
+    this.chapter = this.root.querySelector('.egg-dialogue-heading > span')!;
     this.back = this.root.querySelector('[data-back]')!;
     this.next = this.root.querySelector('[data-next]')!;
     this.back.addEventListener('click', () => {
@@ -68,17 +69,18 @@ export class EggDialogueView {
     this.replay.textContent = '和豆包聊聊';
     this.replay.hidden = true;
     this.replay.addEventListener('click', () => {
-      if (this.game?.invasion && !this.game.pauseOpen) this.game.eggDialogue = 0;
+      if (this.game?.state === 'playing' && !this.game.pauseOpen) this.game.eggDialogue = 0;
       this.sync(this.game);
     });
     document.body.append(this.replay, this.root);
   }
 
   sync(game: Game | null): void {
+    const sameGame = this.game === game;
     this.game = game;
-    const step = game?.invasion && game.state === 'playing' && !game.pauseOpen ? game.eggDialogue : null;
-    this.replay.hidden = !game?.invasion || game.state !== 'playing' || game.pauseOpen || step !== null;
-    if (step === this.shownStep) return;
+    const step = game && game.state === 'playing' && !game.pauseOpen ? game.eggDialogue : null;
+    this.replay.hidden = !game || game.state !== 'playing' || game.pauseOpen || step !== null;
+    if (step === this.shownStep && sameGame) return;
     const wasOpen = this.shownStep !== null;
     this.shownStep = step;
     this.root.hidden = step === null;
@@ -88,14 +90,15 @@ export class EggDialogueView {
       this.previousFocus = null;
       return;
     }
-    const page = EGG_STORY[step];
+    const page = game!.story[step];
+    this.chapter.textContent = game!.level.trial ? game!.level.name : `第${game!.level.id}关 · ${game!.level.name}`;
     this.portrait.src = this.assets.dialoguePortraits.get(page.portrait)!.src;
     this.title.textContent = page.title;
     this.line.textContent = page.line;
     this.cue.textContent = page.cue;
-    this.counter.textContent = `${step + 1} / ${EGG_STORY.length}`;
+    this.counter.textContent = `${step + 1} / ${game!.story.length}`;
     this.back.disabled = step === 0;
-    this.next.textContent = step === EGG_STORY.length - 1 ? '开打！' : '下一句';
+    this.next.textContent = step === game!.story.length - 1 ? '开打！' : '下一句';
     if (!wasOpen) this.previousFocus = document.activeElement as HTMLElement;
     if (!wasOpen || this.back.disabled) this.next.focus({ preventScroll: true });
   }

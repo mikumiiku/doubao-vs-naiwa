@@ -1,3 +1,4 @@
+import { readyBattle } from './battle-fixture';
 import { Assets } from '../../src/core/assets';
 import { walkLegPose } from '../../src/core/anim';
 import { Game } from '../../src/game/game';
@@ -66,13 +67,13 @@ export function combatChecks(assets: Assets): CheckResult[] {
   );
   check('特殊关卡仍可指定单一怪种', chooseWaveAttacker({ ...wave, type: 'naiji' }, 0, []) === 'naiji');
   {
-    const game = new Game(assets, LEVELS[0]);
+    const game = readyBattle(assets, LEVELS[0]);
     game.spawnAttacker(0, 'laugh_frog');
     game.spawnAttacker(1, 'laugh_frog');
     check('自然刷新限制场上大笑奶蛙数量', chooseWaveAttacker(wave, 1, game.attackers, 0.99) === 'ordinary_frog');
   }
   {
-    const game = new Game(assets, LEVELS[2]);
+    const game = readyBattle(assets, LEVELS[2]);
     const mover = plant(game, 'buraowan_doubao');
     game.spawnAttacker(0);
     game.spawnAttacker(0);
@@ -107,7 +108,7 @@ export function combatChecks(assets: Assets): CheckResult[] {
     check('一次推搡结束后释放目标且不扣血', !target.hop && !target.pushedBy && target.hp === hp && target.hopOffset === 0);
   }
   {
-    const game = new Game(assets, LEVELS[3]);
+    const game = readyBattle(assets, LEVELS[3]);
     const d = plant(game, 'hemian_doubao');
     game.spawnAttacker(0, 'laugh_frog');
     const frog = game.attackers[0];
@@ -136,7 +137,7 @@ export function combatChecks(assets: Assets): CheckResult[] {
     check('旧啃咬存档迁移为大笑动作', restoreBattle(assets, old).attackers[0].anim.name === 'laugh');
   }
   {
-    const game = new Game(assets, LEVELS[0]);
+    const game = readyBattle(assets, LEVELS[0]);
     const d = plant(game, 'hemian_doubao');
     game.spawnAttacker(0);
     game.attackers[0].x = 530;
@@ -145,7 +146,7 @@ export function combatChecks(assets: Assets): CheckResult[] {
     check('普通奶蛙咬死豆包不会产生感染怪', d.state === 'dying' && game.attackers.length === 1);
   }
   {
-    const game = new Game(assets, LEVELS[6]);
+    const game = readyBattle(assets, LEVELS[6]);
     game.spawnAttacker(0, 'nai_egg');
     const a = game.attackers[0];
     a.x = 900;
@@ -167,7 +168,7 @@ export function combatChecks(assets: Assets): CheckResult[] {
     check('存档保留减速与连续滚动角度', restored.attackers[0].slowTimer === a.slowTimer && restored.attackers[0].rollAngle === a.rollAngle);
   }
   {
-    const game = new Game(assets, LEVELS[6]);
+    const game = readyBattle(assets, LEVELS[6]);
     const first = plant(game, 'hemian_doubao', 500, 2),
       second = plant(game, 'hemian_doubao', 360, 1);
     game.spawnAttacker(0, 'nai_egg');
@@ -218,7 +219,7 @@ export function combatChecks(assets: Assets): CheckResult[] {
     );
   }
   for (const phase of ['walk', 'vault', 'hatch'] as const) {
-    const game = new Game(assets, LEVELS[6]);
+    const game = readyBattle(assets, LEVELS[6]);
     game.spawnAttacker(0, 'nai_egg');
     const a = game.attackers[0];
     a.x = 580;
@@ -235,7 +236,7 @@ export function combatChecks(assets: Assets): CheckResult[] {
     );
   }
   {
-    const game = new Game(assets, LEVELS[6]);
+    const game = readyBattle(assets, LEVELS[6]);
     game.spawnAttacker(0, 'nai_egg');
     saveBattle(game);
     const old = loadBattleSave()!;

@@ -52,6 +52,7 @@
     }
     function fresh() {
       game = new Game(assets, LEVELS[0]);
+      game.eggDialogue = null;
       game.onRestart = () => { fresh(); status.textContent = '已重新开始'; };
       game.onExit = () => { scene = 'modes'; status.textContent = '已返回选关'; };
       scene = 'game';
@@ -60,7 +61,7 @@
     }
     function defeat() {
       fresh();
-      game.spawnAttacker(0);
+      game.spawnAttacker(2);
       game.mowers[0].state = 'gone';
       game.attackers[0].x = HOME_LINE_X - 1;
       game.update(1 / 60);

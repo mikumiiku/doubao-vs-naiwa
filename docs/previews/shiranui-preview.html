@@ -17,7 +17,7 @@ function scene(name) {
   running = false;
   document.querySelector('#run').textContent = '连续播放';
   game = new Game(assets, {...LEVELS[9], trial:true, name:'不知火蛙动作检查', intro:'行进三格挥扇，风刃削弱轻型豆馅，借力滑步一格。', waves: [], kind:'battle'});
-  game.banner = ''; game.bannerT = 0;
+  game.eggDialogue = null; game.banner = ''; game.bannerT = 0;
   frog = new Attacker(ATTACKERS.shiranui_frog, 2, 1000, rowFootY(2), assets);
   frog.anim.t = 0;
   game.attackers.push(frog);

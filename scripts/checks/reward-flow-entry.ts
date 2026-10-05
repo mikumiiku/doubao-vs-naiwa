@@ -1,3 +1,4 @@
+import { readyBattle } from './battle-fixture';
 /**
  * 通关奖励流程的校验入口（被 scripts/checks/check-reward-flow.mjs 调用）。
  * 在 Node + 浏览器 API 垫片下跑真实的 Game 类，断言整条奖励链路。
@@ -19,6 +20,7 @@ import { combatChecks } from './combat-checks';
 import { campaignChecks } from './campaign-checks';
 import { campaignPlaythroughChecks } from './campaign-playthrough';
 import { fanChecks } from './fan-checks';
+import { storyChecks } from './story-checks';
 
 export interface CheckResult {
   name: string;
@@ -35,7 +37,7 @@ export function runRewardFlowCheck(manifest: Manifest): CheckResult[] {
   const assets = new Assets();
   // 使用实际切片产物的帧数、帧率与轨道，跳过图片加载。
   assets.manifest = manifest;
-  out.push(...combatChecks(assets), ...campaignChecks(assets), ...campaignPlaythroughChecks(assets), ...fanChecks(assets));
+  out.push(...combatChecks(assets), ...campaignChecks(assets), ...campaignPlaythroughChecks(assets), ...fanChecks(assets), ...storyChecks(assets));
 
   {
     const drawn: number[] = [];
@@ -60,7 +62,7 @@ export function runRewardFlowCheck(manifest: Manifest): CheckResult[] {
     } finally {
       assets.tintedFrame = originalFrame;
     }
-    const battle = new Game(assets, { ...LEVELS[0], rows: [0, 1, 2, 3, 4] });
+    const battle = readyBattle(assets, { ...LEVELS[0], rows: [0, 1, 2, 3, 4] });
     battle.spawnAttacker(0, 'laugh_frog');
     const frog = battle.attackers[0];
     hurtAttacker(battle, frog, frog.def.hp * 0.4);
@@ -103,7 +105,7 @@ export function runRewardFlowCheck(manifest: Manifest): CheckResult[] {
     push(`奶蛙 ${name} 每次换脚含四个姿势且不少于半秒`, meta.frames === 8 && meta.frames / meta.fps / 2 >= 0.5);
   }
   {
-    const game = new Game(assets, { ...LEVELS[0], rows: [0, 1, 2, 3, 4] });
+    const game = readyBattle(assets, { ...LEVELS[0], rows: [0, 1, 2, 3, 4] });
     const originalLose = sfx.lose;
     let sounds = 0,
       restarts = 0,
@@ -147,7 +149,7 @@ export function runRewardFlowCheck(manifest: Manifest): CheckResult[] {
 
   const level = { ...LEVELS[0], rows: [0, 1, 2, 3, 4], waves: [{ count: 1, interval: 1, delay: 0 }] };
   {
-    const opening = new Game(assets, { ...LEVELS[0], rows: [0, 1, 2, 3, 4] });
+    const opening = readyBattle(assets, { ...LEVELS[0], rows: [0, 1, 2, 3, 4] });
     for (let frame = 0; frame < 60 * 30; frame++) opening.update(1 / 60);
     push(
       '新开局前 30 秒所有小推车保持待命',
@@ -166,7 +168,7 @@ export function runRewardFlowCheck(manifest: Manifest): CheckResult[] {
       opening.mowers.slice(1).every((m) => m.state === 'idle'),
     );
 
-    const battle = new Game(assets, { ...LEVELS[0], rows: [0, 1, 2, 3, 4] });
+    const battle = readyBattle(assets, { ...LEVELS[0], rows: [0, 1, 2, 3, 4] });
     battle.spawnAttacker(0, 'laugh_frog');
     battle.spawnAttacker(1, 'naiji');
     battle.attackers.forEach((a) => {
@@ -189,16 +191,16 @@ export function runRewardFlowCheck(manifest: Manifest): CheckResult[] {
       '旧版奶蛙和奶鸡存档按剩余血量比例降 15%',
       migrated.attackers.every((a) => a.hp === a.def.hp / 2),
     );
-    battle.mowers[0].state = 'active';
+    battle.mowers[2].state = 'active';
     saveBattle(battle);
     const resuming = restoreBattle(assets, loadBattleSave()!);
     resuming.update(1);
-    push('进入续战后小推车不会自动冲锋移动', resuming.mowers[0].x === battle.mowers[0].x);
+    push('进入续战后小推车不会自动冲锋移动', resuming.mowers[0].x === battle.mowers[2].x);
     resuming.onPointerDown({ x: pauseButtonsRect().cont.x + 20, y: pauseButtonsRect().cont.y + 20 });
     resuming.update(1 / 60);
-    push('明确继续后已触发的小推车恢复冲锋', resuming.mowers[0].x > battle.mowers[0].x);
+    push('明确继续后已触发的小推车恢复冲锋', resuming.mowers[0].x > battle.mowers[2].x);
   }
-  const game = new Game(assets, level);
+  const game = readyBattle(assets, level);
   let nextCalled = 0;
   let exitCalled = 0;
   game.onNext = () => {
@@ -318,7 +320,7 @@ export function runRewardFlowCheck(manifest: Manifest): CheckResult[] {
 
   // 走路手感：瞬时速度要有动画驱动的变化（不是匀速平移），平均速度不能漂，起伏与迈步同步
   {
-    const g3 = new Game(assets, level);
+    const g3 = readyBattle(assets, level);
     g3.firstFrogAt = 0;
     g3.update(1 / 60);
     g3.update(1 / 60);
@@ -361,7 +363,7 @@ export function runRewardFlowCheck(manifest: Manifest): CheckResult[] {
 
   // 个体差异：同批奶蛙不应完全同速同帧
   {
-    const g4 = new Game(assets, level);
+    const g4 = readyBattle(assets, level);
     g4.firstFrogAt = 0;
     for (let i = 0; i < 12; i++) g4.spawnAttacker(0, 'laugh_frog');
     const muls = g4.attackers.map((a) => a.speedMul);
@@ -376,7 +378,7 @@ export function runRewardFlowCheck(manifest: Manifest): CheckResult[] {
 
   // 无奖励关（最后一关）通关后应停在胜利遮罩（有「返回选关」），不进卡片介绍页、不弹空卡
   const lvLast = { ...LEVELS[LEVELS.length - 1], kind: 'battle' as const, waves: [{ count: 1, interval: 1, delay: 0 }] };
-  const g2 = new Game(assets, lvLast);
+  const g2 = readyBattle(assets, lvLast);
   g2.firstFrogAt = 0;
   g2.update(1 / 60);
   g2.update(1 / 60);
@@ -413,7 +415,7 @@ export function runRewardFlowCheck(manifest: Manifest): CheckResult[] {
   // 取每关第 2 波：它的首只奶蛙应与第 1 波末只奶蛙相隔 delay 秒。
   {
     for (const level of LEVELS.filter((l) => l.kind !== 'egg-invasion')) {
-      const gp = new Game(assets, level);
+      const gp = readyBattle(assets, level);
       const spawns: number[] = [];
       const orig = gp.spawnAttacker.bind(gp);
       gp.spawnAttacker = (row: number): void => {
@@ -443,7 +445,7 @@ export function runRewardFlowCheck(manifest: Manifest): CheckResult[] {
 
   // Real damage entry point: lethal hits play once, repeated hits and chickens stay silent.
   {
-    const battle = new Game(assets, { ...LEVELS[0], rows: [0, 1, 2, 3, 4] });
+    const battle = readyBattle(assets, { ...LEVELS[0], rows: [0, 1, 2, 3, 4] });
     const originalDeath = sfx.frogDeath;
     let calls = 0;
     sfx.frogDeath = () => {

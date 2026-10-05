@@ -1,3 +1,4 @@
+import { readyBattle } from './battle-fixture';
 import type { Assets } from '../../src/core/assets';
 import { sfx } from '../../src/core/sfx';
 import { DEBUG_TRIALS, HOME_LINE_X, LEVELS } from '../../src/game/config';
@@ -15,7 +16,7 @@ export function fanChecks(assets: Assets): CheckResult[] {
   const check = (name: string, ok: boolean): void => { results.push({ name, ok }); };
   const near = (a: number, b: number): boolean => Math.abs(a - b) < 0.001;
   function battle(x = 1000): { game: Game; frog: Attacker } {
-    const game = new Game(assets, LEVELS[9]);
+    const game = readyBattle(assets, LEVELS[9]);
     const frog = new Attacker(ATTACKERS.shiranui_frog, 2, x, rowFootY(2), assets);
     game.attackers.push(frog);
     return { game, frog };

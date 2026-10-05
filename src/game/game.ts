@@ -19,7 +19,7 @@ import {
   type BattleState,
 } from './systems';
 import { ATTACKERS, DEFENDERS, type DefenderDef } from './units';
-import { EGG_STORY } from './eggstory';
+import { battleStory, type StoryPage } from './story';
 import {
   beltCardAt,
   drawInvasion,
@@ -99,7 +99,8 @@ export class Game implements BattleState {
   hitFx: { x: number; y: number; t: number; radius?: number }[] = [];
   invasion: EggInvasion | null = null;
   /** 对话页码；null 表示演出结束。它与关卡暂停分别保存。 */
-  eggDialogue: number | null = null;
+  eggDialogue: number | null = 0;
+  readonly story: readonly StoryPage[];
   conveyor: Conveyor | null = null;
   occupied: (Defender | null)[][];
   waveIndex = 0;
@@ -151,13 +152,11 @@ export class Game implements BattleState {
     public level: LevelDef,
   ) {
     this.loseAnim = new Anim(assets, 'laugh_frog', 'chew');
+    this.story = battleStory(level);
     this.waves = level.waves;
     this.activeRows = level.rows ?? [0, 1, 2, 3, 4];
     this.dough = level.startDough ?? RESOURCE.start;
-    this.banner = level.trial ? level.name : `第${level.id}关 · ${level.name}`;
-    if (level.kind === 'egg-invasion') this.banner = '';
     if (level.trial) this.firstFrogAt = 3;
-    this.bannerT = this.banner ? 3 : 0;
     if (level.kind === 'egg-invasion') {
       this.invasion = { spawned: 0, broken: 0, missed: 0, total: level.waves[0].count, timer: 3, eggs: [], combo: 0, maxCombo: 0, perfect: 0, good: 0, score: 0, feedback: [] };
       this.eggDialogue = 0;
@@ -167,7 +166,7 @@ export class Game implements BattleState {
       this.firstFrogAt = 16;
     }
     this.occupied = Array.from({ length: GRID.rows }, () => Array<Defender | null>(GRID.cols).fill(null));
-    for (let r = 0; r < GRID.rows; r++) {
+    for (const r of this.activeRows) {
       if (!this.invasion) this.mowers.push(new Mower(r, MOWER.restX, rowFootY(r)));
     }
   }
@@ -184,7 +183,7 @@ export class Game implements BattleState {
   advanceEggDialogue(back = false): void {
     if (this.eggDialogue === null || this.pauseOpen) return;
     if (back) this.eggDialogue = Math.max(0, this.eggDialogue - 1);
-    else this.eggDialogue = this.eggDialogue + 1 < EGG_STORY.length ? this.eggDialogue + 1 : null;
+    else this.eggDialogue = this.eggDialogue + 1 < this.story.length ? this.eggDialogue + 1 : null;
   }
 
   onRhythmKey(key: string, repeat = false): boolean {
@@ -231,8 +230,8 @@ export class Game implements BattleState {
       this.pauseOpen = true;
       return;
     }
+    if (this.eggDialogue !== null) return;
     if (this.invasion) {
-      if (this.eggDialogue !== null) return;
       hitInvasionEgg(this, p);
       return;
     }
@@ -268,7 +267,7 @@ export class Game implements BattleState {
     }
     if (this.shoveling) {
       const cell = cellAt(p.x, p.y);
-      if (cell) {
+      if (cell && this.activeRows.includes(cell.row)) {
         const target =
           this.occupied[cell.row][cell.col] ??
           this.defenders.find(
@@ -605,19 +604,8 @@ export class Game implements BattleState {
   }
 
   draw(ctx: CanvasRenderingContext2D): void {
-    ctx.drawImage(this.assets.bg, 0, 0, DESIGN_W, DESIGN_H);
+    ctx.drawImage(this.assets.backgroundForRows(this.activeRows), 0, 0, DESIGN_W, DESIGN_H);
     if (DEBUG) this.drawDebug(ctx);
-    for (let row = 0; row < GRID.rows; row++) {
-      if (this.activeRows.includes(row)) continue;
-      ctx.save();
-      ctx.fillStyle = 'rgba(49,69,38,.42)';
-      ctx.fillRect(GRID.colX[0], cellTop(row), GRID.colX[GRID.cols] - GRID.colX[0], cellH(row));
-      ctx.fillStyle = '#fdf3d8';
-      ctx.font = 'bold 22px "Microsoft YaHei",sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText('这一行先歇会儿', 820, cellTop(row) + cellH(row) / 2);
-      ctx.restore();
-    }
 
     // 大肥鱼小推车（待命与冲锋都在单位下层）
     for (const m of this.mowers) drawMower(ctx, this.assets, m);
@@ -781,7 +769,7 @@ export class Game implements BattleState {
     const def = DEFENDERS.find((d) => d.id === this.placing);
     if (!def) return;
     const cell = cellAt(this.mouse.x, this.mouse.y);
-    if (!cell) return;
+    if (!cell || !this.activeRows.includes(cell.row)) return;
     const valid = !this.occupied[cell.row][cell.col] && this.dough >= def.cost;
     const cx = cellCenterX(cell.col);
     const cy = rowFootY(cell.row);

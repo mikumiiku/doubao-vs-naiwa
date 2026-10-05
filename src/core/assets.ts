@@ -60,6 +60,7 @@ function alphaBBox(img: HTMLImageElement): { x: number; y: number; w: number; h:
 
 export class Assets {
   bg!: HTMLImageElement;
+  private battleBackgrounds = new Map<string, HTMLImageElement>();
   manifest!: Manifest;
   home!: HomeAssets;
   ui!: UiArt;
@@ -102,6 +103,13 @@ export class Assets {
         loadImage('assets/others/clip.png'),
       ]);
     this.bg = bg;
+    await Promise.all([
+      ['2', 'day-one'],
+      ['1,2,3', 'day-three'],
+      ['0,1,2,3', 'day-four'],
+    ].map(async ([rows, name]) => {
+      this.battleBackgrounds.set(rows, await loadImage(`assets/bg/${name}.png`));
+    }));
     this.manifest = manifest;
     this.ui = Object.fromEntries(await Promise.all(UI_ART.map(async (name) => [name, await loadImage(`assets/ui/${name}.png`)]))) as UiArt;
     this.home = { bg: homeBg, heroes, btnStart, title: this.ui.title };
@@ -151,6 +159,10 @@ export class Assets {
         onProgress?.(done, jobs.length);
       }),
     );
+  }
+
+  backgroundForRows(rows: readonly number[]): HTMLImageElement {
+    return this.battleBackgrounds.get([...rows].sort((a, b) => a - b).join(',')) ?? this.bg;
   }
 
   meta(unit: string, anim: string): AnimMeta | undefined {

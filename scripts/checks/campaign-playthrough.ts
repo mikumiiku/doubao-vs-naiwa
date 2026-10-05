@@ -1,3 +1,4 @@
+import { readyBattle } from './battle-fixture';
 import type { Assets } from '../../src/core/assets';
 import { Game } from '../../src/game/game';
 import { GRID, LEVELS } from '../../src/game/config';
@@ -21,7 +22,7 @@ export function campaignPlaythroughChecks(assets: Assets): CheckResult[] {
       let result: CheckResult | undefined;
       for (let attempt = 0; attempt < 4; attempt++) {
         seed = 1042026 + level.id * 100 + attempt * 7919;
-        const g = new Game(assets, level);
+        const g = readyBattle(assets, level);
         const place = (id: string, row: number, col: number): boolean => {
           const def = DEFENDERS.find((d) => d.id === id)!;
           if (!level.cards.includes(id) || g.occupied[row][col] || g.dough < def.cost || (g.cooldowns.get(id) ?? 0) > 0) return false;
@@ -130,7 +131,7 @@ export function campaignPlaythroughChecks(assets: Assets): CheckResult[] {
     let conveyorResult: CheckResult | undefined;
     for (let attempt = 0; attempt < 4; attempt++) {
       seed = 1052026 + attempt * 7919;
-      const g = new Game(assets, LEVELS[9]);
+      const g = readyBattle(assets, LEVELS[9]);
       g.dough = 0;
       for (let tick = 0; tick < 360 * 30 && g.state === 'playing'; tick++) {
         g.update(1 / 30);

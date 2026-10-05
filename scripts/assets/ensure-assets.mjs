@@ -8,6 +8,9 @@ import { buildAssets } from './build-assets.mjs';
 // 每个 assets:* 脚本各取一个代表性产物做哨兵
 const SENTINELS = [
   'public/assets/bg/day.png', // prepare-bg
+  'public/assets/bg/day-one.png',
+  'public/assets/bg/day-three.png',
+  'public/assets/bg/day-four.png',
   'public/assets/home/bg.jpg', // prepare-home
   'public/assets/others/dough.png', // prepare-others
   'public/assets/sprites/manifest.json', // slice-sprites

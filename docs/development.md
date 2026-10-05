@@ -51,7 +51,7 @@ dist/                   生产构建，不进入版本库
 
 源素材经 `scripts/assets/` 处理为 `public/assets/`，游戏通过 `src/core/assets.ts` 加载。全量生成顺序为背景、首页、道具与卡面、角色切片、界面与音频。`ensure-assets.mjs` 检查哨兵、全部清单帧与音频同步，资源缺失时调用同一条全量管线。
 
-目录搬迁没有改变运行URL：背景仍为 `/assets/bg/day.png`，角色仍为 `/assets/sprites/<id>/<animation>/<frame>.png`，音频仍为 `/assets/audio/`。
+目录搬迁没有改变既有运行URL。五行背景为 `/assets/bg/day.png`，一行、三行和四行分别为 `day-one.png`、`day-three.png`、`day-four.png`，按开放行选择。角色为 `/assets/sprites/<id>/<animation>/<frame>.png`，音频为 `/assets/audio/`。
 
 ## 源码职责
 
@@ -63,7 +63,7 @@ dist/                   生产构建，不进入版本库
 | `src/game/entities.ts` | 豆包、奶蛙、弹丸、面团和大肥鱼实体 |
 | `src/game/systems.ts` | 波次、攻击、生产、感染、控制、命中与清理 |
 | `src/game/special.ts` | 奶蛋入侵和传送带的状态、输入与绘制 |
-| `src/game/eggstory.ts / eggdialogue.ts / eggdialogue.css` | 豆包对话内容、原生控件、焦点与响应式演出 |
+| `src/game/story.ts / eggstory.ts / eggdialogue.ts / eggdialogue.css` | 各关开场与奶蛋教学、原生控件、焦点与响应式演出 |
 | `src/game/eggrhythm.ts` | 三分钟固定谱面、时机窗口、目标尺寸、速度与节奏段落 |
 | `src/game/game.ts` | 关内输入、更新、绘制与奖励结算 |
 | `src/game/ui.ts` | 常规HUD、工具提示、暂停和胜负界面 |

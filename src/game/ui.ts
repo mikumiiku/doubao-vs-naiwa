@@ -294,25 +294,6 @@ export function drawHud(ctx: CanvasRenderingContext2D, game: Game): void {
   drawUiArt(ctx, game.assets.ui.menu, mb);
 
   drawProgress(ctx, game);
-  if (!game.invasion && !game.conveyor && game.level.intro) {
-    ctx.save();
-    ctx.fillStyle = 'rgba(253,243,216,.92)';
-    ctx.strokeStyle = '#8a5a28';
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.roundRect(935, 79, 430, 143, 12);
-    ctx.fill();
-    ctx.stroke();
-    ctx.fillStyle = '#5b2d12';
-    ctx.textAlign = 'left';
-    ctx.textBaseline = 'middle';
-    ctx.font = `bold 21px ${FONT}`;
-    ctx.fillText(game.level.trial ? game.level.name : `第${game.level.id}关 · ${game.level.name}`, 951, 104, 400);
-    ctx.font = `18px ${FONT}`;
-    const lines = game.level.intro.match(/.{1,21}/g) ?? [];
-    lines.slice(0, 4).forEach((line, i) => ctx.fillText(line, 951, 135 + i * 23, 400));
-    ctx.restore();
-  }
 }
 
 export function drawUnitTooltip(ctx: CanvasRenderingContext2D, name: string, effect: string, x: number, y: number): void {

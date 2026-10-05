@@ -1,3 +1,4 @@
+import { readyBattle } from './battle-fixture';
 import type { Assets } from '../../src/core/assets';
 import { Game } from '../../src/game/game';
 import { CAMPAIGN_CARDS, ENEMY_ORDER, LEVELS, RESOURCE, levelKind } from '../../src/game/config';
@@ -61,7 +62,7 @@ export function campaignChecks(assets: Assets): CheckResult[] {
   );
   check('面团降为每12秒一团', RESOURCE.doughInterval === 12);
   {
-    const g = new Game(assets, {
+    const g = readyBattle(assets, {
       ...LEVELS[0],
       waves: [
         { count: 1, interval: 1, delay: 0 },
@@ -77,7 +78,7 @@ export function campaignChecks(assets: Assets): CheckResult[] {
     check('刷完所有波次仍须清掉存活怪才胜利', g.state === 'playing');
   }
   {
-    const g = new Game(assets, LEVELS[3]),
+    const g = readyBattle(assets, LEVELS[3]),
       d = plant(g, 'tangbao_doubao');
     hurtDefender(g, d, 239);
     check('糖包未到掉糖阈值不会产出', g.doughs.length === 0);
@@ -90,7 +91,7 @@ export function campaignChecks(assets: Assets): CheckResult[] {
     check('糖包掉糖次数存档保留', r.defenders[0].candyDrops === 3);
   }
   {
-    const g = new Game(assets, LEVELS[5]);
+    const g = readyBattle(assets, LEVELS[5]);
     const victims = [enemy(g, 2, 600), enemy(g, 2, 650), enemy(g, 2, 700), enemy(g, 2, 750)];
     const p = new Projectile(2, 550, 600, 600, 32);
     p.remainingHits = 3;
@@ -100,7 +101,7 @@ export function campaignChecks(assets: Assets): CheckResult[] {
       '一针连续碰撞穿过三只且不伤第四只',
       victims.slice(0, 3).every((a) => a.hp === a.def.hp - 32) && victims[3].hp === victims[3].def.hp && p.dead,
     );
-    const g2 = new Game(assets, LEVELS[5]),
+    const g2 = readyBattle(assets, LEVELS[5]),
       a = enemy(g2, 2, 600),
       p2 = new Projectile(2, 590, 600, 20, 32);
     p2.remainingHits = 3;
@@ -112,7 +113,7 @@ export function campaignChecks(assets: Assets): CheckResult[] {
     check('穿透弹存档不重复打同一只', restored.attackers[0].hp === a.hp && restored.projectiles[0].remainingHits === 2);
   }
   {
-    const g = new Game(assets, LEVELS[5]),
+    const g = readyBattle(assets, LEVELS[5]),
       d = plant(g, 'zhaxin_doubao');
     const a = enemy(g, 1, d.x + 80),
       b = enemy(g, 3, d.x + 80),
@@ -126,7 +127,7 @@ export function campaignChecks(assets: Assets): CheckResult[] {
     );
   }
   {
-    const g = new Game(assets, LEVELS[6]),
+    const g = readyBattle(assets, LEVELS[6]),
       d = plant(g, 'douxian_shooter');
     enemy(g, 2, 900);
     plant(g, 'fudu_doubao', 1, 2);
@@ -137,14 +138,14 @@ export function campaignChecks(assets: Assets): CheckResult[] {
     check('复读效果不叠加', Math.abs(d.anim.t - 0.27) < 1e-8);
   }
   {
-    const g = new Game(assets, LEVELS[7]),
+    const g = readyBattle(assets, LEVELS[7]),
       d = plant(g, 'moyu_doubao');
     const a = enemy(g, 1, d.x + 100),
       b = enemy(g, 3, d.x + 100);
     updateDefenders(g, 0.9);
     updateDefenders(g, 0.01);
     check('摸鱼覆盖上下邻行', a.slowTimer > 0 && b.slowTimer > 0 && a.hp < a.def.hp);
-    const g2 = new Game(assets, LEVELS[8]);
+    const g2 = readyBattle(assets, LEVELS[8]);
     plant(g2, 'luanhui_doubao');
     enemy(g2, 1, 900);
     updateDefenders(g2, 0.9);
@@ -152,14 +153,14 @@ export function campaignChecks(assets: Assets): CheckResult[] {
     check('已读乱回在邻行有怪时向三行开火', g2.projectiles.map((p) => p.row).join(',') === '1,2,3');
   }
   {
-    const g = new Game(assets, LEVELS[9]),
+    const g = readyBattle(assets, LEVELS[9]),
       d = plant(g, 'kaimen_doubao');
     const a = enemy(g, 2, d.x + 70),
       b = enemy(g, 2, d.x + 100);
     updateDefenders(g, 0.9);
     updateDefenders(g, 0.01);
     check('木门群体伤害和低跳击退', !!a.hop && !!b.hop && a.hp === a.def.hp - 65 && b.hp === b.def.hp - 65);
-    const g2 = new Game(assets, LEVELS[8]),
+    const g2 = readyBattle(assets, LEVELS[8]),
       shout = enemy(g2, 2, 800, 'hoola_frog'),
       ally = enemy(g2, 1, 810),
       far = enemy(g2, 4, 810);
@@ -167,7 +168,7 @@ export function campaignChecks(assets: Assets): CheckResult[] {
     check('吼啦只加速附近同伴', ally.rallyBuff > 0 && far.rallyBuff === 0 && shout.rallyFx > 0);
   }
   {
-    const g = new Game(assets, LEVELS[4]);
+    const g = readyBattle(assets, LEVELS[4]);
     g.update(8);
     check('开场对话冻结计时与奶蛋出场', g.time === 0 && g.invasion!.eggs.length === 0 && g.eggDialogue === 0);
     g.advanceEggDialogue();
@@ -241,7 +242,7 @@ export function campaignChecks(assets: Assets): CheckResult[] {
       '恢复旧档不会修改原档或恢复旧规则横幅',
       migratedAgain.invasion!.eggs.length === 0 && migratedAgain.banner === '' && legacy.invasion!.eggs[0].speed === oldSpeed,
     );
-    const win = new Game(assets, LEVELS[4]);
+    const win = readyBattle(assets, LEVELS[4]);
     for (const _page of EGG_STORY) win.advanceEggDialogue();
     for (let i = 0; i < 181 * 60 && win.state === 'playing'; i++) {
       win.update(1 / 60);
@@ -263,11 +264,11 @@ export function campaignChecks(assets: Assets): CheckResult[] {
     );
     win.update(1.3);
     check('小游戏胜利仍有奖励卡', win.rewardPhase === 'reward' && win.reward?.def.id === 'zhaxin_doubao');
-    const lose = new Game(assets, LEVELS[4]);
+    const lose = readyBattle(assets, LEVELS[4]);
     for (const _page of EGG_STORY) lose.advanceEggDialogue();
     for (let i = 0; i < 60 * 60 && lose.state === 'playing'; i++) lose.update(1 / 60);
     check('奶蛋入侵漏五只进入失败', lose.state === 'lose' && lose.invasion!.missed === 5);
-    const timing = new Game(assets, LEVELS[4]);
+    const timing = readyBattle(assets, LEVELS[4]);
     for (const _page of EGG_STORY) timing.advanceEggDialogue();
     timing.update(3.07);
     const hit = timing.invasion!.eggs[0];
@@ -306,7 +307,7 @@ export function campaignChecks(assets: Assets): CheckResult[] {
     );
   }
   {
-    const g = new Game(assets, LEVELS[9]);
+    const g = readyBattle(assets, LEVELS[9]);
     g.dough = 0;
     const belt = g.conveyor!,
       c = belt.cards[0],

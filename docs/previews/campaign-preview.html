@@ -15,7 +15,7 @@ document.querySelector('#toggle').onclick=()=>{running=!running;document.querySe
 document.querySelector('#step').onclick=()=>{for(let i=0;i<120;i++)game.update(1/120);render()};
 document.querySelector('#narrow').onclick=()=>{canvas.classList.toggle('narrow');document.querySelector('#narrow').textContent=canvas.classList.contains('narrow')?'恢复宽屏':'窄屏预览'};
 document.querySelector('#roster').onclick=()=>{
-game=new Game(assets,LEVELS[8]);game.firstFrogAt=Infinity;game.bannerT=0;running=false;
+game=new Game(assets,LEVELS[8]);game.eggDialogue=null;game.firstFrogAt=Infinity;game.bannerT=0;running=false;
 DEFENDERS.forEach((def,i)=>{const col=i%5,row=Math.floor(i/5);game.defenders.push(new Defender(def,col,row,cellCenterX(col),rowFootY(row),assets))});
 Object.keys(ATTACKERS).forEach((id,i)=>{game.spawnAttacker(3,id);game.attackers.at(-1).x=cellCenterX(i)});render();document.querySelector('#toggle').textContent='继续演练'};
 function point(e){const r=canvas.getBoundingClientRect();return{x:(e.clientX-r.left)*1585/r.width,y:(e.clientY-r.top)*992/r.height}}

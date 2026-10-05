@@ -19,7 +19,7 @@ let game,paused=false,scale=1,ox=0,oy=0;
 function resize(){const rect=canvas.getBoundingClientRect(),dpr=Math.min(devicePixelRatio||1,2);canvas.width=rect.width*dpr;canvas.height=rect.height*dpr;scale=Math.min(rect.width/DESIGN_W,rect.height/DESIGN_H);ox=(rect.width-DESIGN_W*scale)/2;oy=(rect.height-DESIGN_H*scale)/2;}
 function plant(id,row,x,col){const def=DEFENDERS.find(d=>d.id===id),d=new Defender(def,col,row,x,rowFootY(row),assets);game.defenders.push(d);if(def.occupiesCell!==false)game.occupied[row][col]=d;return d;}
 function frog(id,row,x){game.spawnAttacker(row,id);const a=game.attackers.at(-1);a.x=x;a.anim.t=0;a.speedMul=1;return a;}
-function fresh(){game=new Game(assets,LEVELS[6]);game.dough=999;game.firstFrogAt=1e9;
+function fresh(){game=new Game(assets,LEVELS[6]);game.eggDialogue=null;game.dough=999;game.firstFrogAt=1e9;
 frog('ordinary_frog',0,1100);plant('hemian_doubao',1,800,4);frog('laugh_frog',1,882);
 plant('moyu_doubao',2,660,3);plant('hemian_doubao',2,790,4);frog('laugh_frog',2,872);
 plant('buraowan_doubao',3,780,4);frog('ordinary_frog',3,820);frog('ordinary_frog',3,846);
