@@ -1,0 +1,13 @@
+{
+  "source": "白天战场.png",
+  "tool": "imagegen",
+  "variants": [
+    {
+      "file": "一行草坪.png"
+    },
+    {
+      "file": "三行草坪.png"
+    }
+  ],
+  "registration": "prepare-bg.mjs registers painted lawn to the existing 1585x992 grid; day-four reuses the painted bottom soil."
+}
