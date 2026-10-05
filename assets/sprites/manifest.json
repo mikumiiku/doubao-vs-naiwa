@@ -1,0 +1,493 @@
+{
+  "refHeight": 220,
+  "units": {
+    "tangbao_doubao": {
+      "idle": {
+        "frames": 4,
+        "fps": 3,
+        "anchor": [
+          0,
+          -1
+        ]
+      },
+      "attack": {
+        "frames": 4,
+        "fps": 2.5,
+        "anchor": [
+          -6.3,
+          5.8
+        ]
+      }
+    },
+    "yizhen_doubao": {
+      "idle": {
+        "frames": 4,
+        "fps": 3,
+        "anchor": [
+          0,
+          1
+        ]
+      },
+      "attack": {
+        "frames": 4,
+        "fps": 2.5,
+        "anchor": [
+          1.5,
+          4.1
+        ]
+      }
+    },
+    "zhaxin_doubao": {
+      "idle": {
+        "frames": 4,
+        "fps": 3,
+        "anchor": [
+          0,
+          1.5
+        ]
+      },
+      "attack": {
+        "frames": 4,
+        "fps": 2.5,
+        "anchor": [
+          -15.6,
+          2
+        ]
+      }
+    },
+    "fudu_doubao": {
+      "idle": {
+        "frames": 4,
+        "fps": 3,
+        "anchor": [
+          0,
+          2.5
+        ]
+      },
+      "attack": {
+        "frames": 4,
+        "fps": 2.5,
+        "anchor": [
+          1.5,
+          2.8
+        ]
+      }
+    },
+    "moyu_doubao": {
+      "idle": {
+        "frames": 4,
+        "fps": 3,
+        "anchor": [
+          0,
+          1
+        ]
+      },
+      "attack": {
+        "frames": 4,
+        "fps": 2.5,
+        "anchor": [
+          0,
+          1.8
+        ]
+      }
+    },
+    "luanhui_doubao": {
+      "idle": {
+        "frames": 4,
+        "fps": 3,
+        "anchor": [
+          0,
+          0
+        ]
+      },
+      "attack": {
+        "frames": 4,
+        "fps": 2.5,
+        "anchor": [
+          -15.1,
+          2.1
+        ]
+      }
+    },
+    "kaimen_doubao": {
+      "idle": {
+        "frames": 4,
+        "fps": 3,
+        "anchor": [
+          0,
+          1.5
+        ]
+      },
+      "attack": {
+        "frames": 4,
+        "fps": 2.5,
+        "anchor": [
+          -11.3,
+          10
+        ]
+      }
+    },
+    "hoola_frog": {
+      "walk": {
+        "frames": 4,
+        "fps": 3,
+        "anchor": [
+          0,
+          3
+        ]
+      },
+      "attack": {
+        "frames": 4,
+        "fps": 2.5,
+        "anchor": [
+          4.7,
+          4.3
+        ]
+      },
+      "death": {
+        "frames": 4,
+        "fps": 4,
+        "anchor": [
+          8.1,
+          1
+        ]
+      }
+    },
+    "shiranui_frog": {
+      "walk": {
+        "frames": 8,
+        "fps": 8,
+        "anchor": [
+          0,
+          5
+        ]
+      },
+      "fan": {
+        "frames": 4,
+        "fps": 5,
+        "anchor": [
+          -10.3,
+          17.5
+        ]
+      },
+      "attack": {
+        "frames": 4,
+        "fps": 4,
+        "anchor": [
+          29.4,
+          56
+        ]
+      },
+      "death": {
+        "frames": 4,
+        "fps": 4,
+        "anchor": [
+          2.5,
+          0.9
+        ]
+      }
+    },
+    "douxian_shooter": {
+      "idle": {
+        "frames": 6,
+        "fps": 4,
+        "anchor": [
+          0,
+          0
+        ]
+      },
+      "attack": {
+        "frames": 7,
+        "fps": 4,
+        "anchor": [
+          6.9,
+          0.7
+        ]
+      }
+    },
+    "hemian_doubao": {
+      "idle": {
+        "frames": 6,
+        "fps": 4,
+        "anchor": [
+          0,
+          0
+        ]
+      },
+      "produce": {
+        "frames": 8,
+        "fps": 5,
+        "anchor": [
+          -4.5,
+          0
+        ]
+      }
+    },
+    "buraowan_doubao": {
+      "walk": {
+        "frames": 6,
+        "fps": 5,
+        "groundTrack": [
+          -0.786,
+          -0.262,
+          -0.07,
+          1,
+          0.856,
+          -0.738
+        ],
+        "bobTrack": [
+          -1,
+          0.044,
+          0.717,
+          0.47,
+          0.76,
+          -0.991
+        ],
+        "anchor": [
+          0,
+          0
+        ]
+      },
+      "attack": {
+        "frames": 6,
+        "fps": 5,
+        "anchor": [
+          -0.5,
+          0
+        ]
+      }
+    },
+    "laugh_frog": {
+      "walk": {
+        "frames": 8,
+        "fps": 8,
+        "groundTrack": [
+          1,
+          0,
+          -1,
+          0,
+          1,
+          0,
+          -1,
+          0
+        ],
+        "bobTrack": [
+          -0.7,
+          0,
+          0.7,
+          0,
+          -0.7,
+          0,
+          0.7,
+          0
+        ],
+        "anchor": [
+          0,
+          4
+        ]
+      },
+      "laugh": {
+        "frames": 6,
+        "fps": 6,
+        "anchor": [
+          12.1,
+          4.5
+        ]
+      },
+      "walk_b": {
+        "frames": 8,
+        "fps": 8,
+        "groundTrack": [
+          1,
+          0,
+          -1,
+          0,
+          1,
+          0,
+          -1,
+          0
+        ],
+        "bobTrack": [
+          -0.7,
+          0,
+          0.7,
+          0,
+          -0.7,
+          0,
+          0.7,
+          0
+        ],
+        "anchor": [
+          0,
+          4.9
+        ]
+      },
+      "laugh_b": {
+        "frames": 6,
+        "fps": 6,
+        "anchor": [
+          12.1,
+          4
+        ]
+      },
+      "death": {
+        "frames": 5,
+        "fps": 4,
+        "anchor": [
+          -3.7,
+          0.3
+        ]
+      },
+      "death_b": {
+        "frames": 5,
+        "fps": 4,
+        "anchor": [
+          -3.7,
+          0.3
+        ]
+      },
+      "chew": {
+        "frames": 8,
+        "fps": 6,
+        "anchor": [
+          2.8,
+          4.5
+        ]
+      }
+    },
+    "naiji": {
+      "walk": {
+        "frames": 8,
+        "fps": 5,
+        "groundTrack": [
+          0.956,
+          0.38,
+          -0.921,
+          -0.751,
+          0.965,
+          -0.376,
+          -1,
+          0.747
+        ],
+        "bobTrack": [
+          1,
+          -0.301,
+          -0.147,
+          -0.159,
+          0.052,
+          -0.187,
+          -0.247,
+          -0.011
+        ],
+        "anchor": [
+          0,
+          0
+        ]
+      },
+      "attack": {
+        "frames": 6,
+        "fps": 5,
+        "anchor": [
+          -7.8,
+          0
+        ]
+      }
+    },
+    "ordinary_frog": {
+      "walk": {
+        "frames": 8,
+        "fps": 8,
+        "groundTrack": [
+          1,
+          0,
+          -1,
+          0,
+          1,
+          0,
+          -1,
+          0
+        ],
+        "bobTrack": [
+          -0.7,
+          0,
+          0.7,
+          0,
+          -0.7,
+          0,
+          0.7,
+          0
+        ],
+        "anchor": [
+          0,
+          4
+        ]
+      },
+      "attack": {
+        "frames": 4,
+        "fps": 4,
+        "anchor": [
+          -22.3,
+          18.6
+        ]
+      },
+      "death": {
+        "frames": 4,
+        "fps": 4,
+        "anchor": [
+          0.9,
+          0.6
+        ]
+      },
+      "walk_body": {
+        "frames": 1,
+        "fps": 1,
+        "anchor": [
+          -205.4,
+          0.6
+        ]
+      },
+      "walk_far": {
+        "frames": 1,
+        "fps": 1,
+        "anchor": [
+          -6.9,
+          1.4
+        ]
+      },
+      "walk_near": {
+        "frames": 1,
+        "fps": 1,
+        "anchor": [
+          -6.9,
+          1.4
+        ]
+      }
+    },
+    "nai_egg": {
+      "walk": {
+        "frames": 1,
+        "fps": 1,
+        "anchor": [
+          0,
+          0
+        ]
+      },
+      "hatch": {
+        "frames": 4,
+        "fps": 6,
+        "anchor": [
+          1.5,
+          0
+        ]
+      },
+      "death": {
+        "frames": 4,
+        "fps": 6,
+        "anchor": [
+          1.5,
+          0
+        ]
+      }
+    }
+  }
+}
