@@ -1,0 +1,522 @@
+[
+  {
+    "from": "assets/act/doubao/蒜香豆包.png",
+    "to": "assets/archive/garlic/animations/蒜香豆包.png",
+    "sha256": "A5F022803BC4EE96E3154259B7C0582FF6BF7CCBFDD69D8B22CC805AD48AE0A0"
+  },
+  {
+    "from": "assets/act/doubao/蒜香豆包.prompts.json",
+    "to": "assets/archive/garlic/animations/蒜香豆包.prompts.json",
+    "sha256": "7A04BB626D6CD99DAAE86B3B7A9083AD44E8079D8CDB97360DD4BE0F2DBC79C0"
+  },
+  {
+    "from": "assets/sprite/doubao/蒜香豆包.png",
+    "to": "assets/archive/garlic/portraits/蒜香豆包.png",
+    "sha256": "3C032F0FF99D2EB3BE4B1AABA96F8E7F510AE61D940BAF196A756A3664CDDC73"
+  },
+  {
+    "from": "assets/act/naiwa/大笑奶蛙-另一侧迈步.png",
+    "to": "assets/archive/laugh-frog/大笑奶蛙-另一侧迈步.png",
+    "sha256": "B1A1E5FF887D3DDCD6EF8CEE7649BF1415E2B11282016DD290F21E779E06C075"
+  },
+  {
+    "from": "assets/act/naiwa/大笑奶蛙-另一侧迈步.prompts.json",
+    "to": "assets/archive/laugh-frog/大笑奶蛙-另一侧迈步.prompts.json",
+    "sha256": "202C4FB55088F5E7D56181801FA61C7F1744256E0EF2262423248883B353667B"
+  },
+  {
+    "from": "assets/act/others/夹子.png",
+    "to": "assets/archive/tools/夹子.png",
+    "sha256": "C7DE5BF0EED4B06ABF46276EED8120E69F53C960F1AD3F9DFFA0BC03144A94CB"
+  },
+  {
+    "from": "assets/homepage/设置按钮.png",
+    "to": "assets/archive/home/设置按钮.png",
+    "sha256": "AA1BDF2749A7323DFA3D086A8AC367CA27E5A66F1E0CFA598D4F188AF8D146BC"
+  },
+  {
+    "from": "assets/homepage/退出按钮.png",
+    "to": "assets/archive/home/退出按钮.png",
+    "sha256": "C3E3F676557427AA4369BD7CA2A746B2E978999735D6C64317FC2FDDF7556062"
+  },
+  {
+    "from": "assets/others/菜单按钮.png",
+    "to": "assets/archive/ui/菜单按钮.png",
+    "sha256": "9464A8A15C1B7D90410EB85669B3D42C2FF71C1949F868C53FDF995A5637F623"
+  },
+  {
+    "from": "assets/others/菜单框.png",
+    "to": "assets/archive/ui/菜单框.png",
+    "sha256": "E1B273E6081C0E2C8E5D4F84BE25E932DCA8551C5DFD475A0FC94AC6909E84CF"
+  },
+  {
+    "from": "assets\\act\\doubao\\不绕弯豆包.png",
+    "to": "assets\\characters\\defenders\\不绕弯豆包.png",
+    "sha256": "667493826017F773595360AAB47DA34AC59F8D92C72FC7B9EB20AE65C1A275D6"
+  },
+  {
+    "from": "assets\\act\\doubao\\豆馅射手.png",
+    "to": "assets\\characters\\defenders\\豆馅射手.png",
+    "sha256": "13EDC03A38178DE9DF96C4E1B446ADF7D17210A17AC6868A5B0895F2EAFFC420"
+  },
+  {
+    "from": "assets\\act\\doubao\\和面豆包.png",
+    "to": "assets\\characters\\defenders\\和面豆包.png",
+    "sha256": "AF7B49830D6B247373C0FDCF0AEE66389D08FEB5F887BEB70770D7C58C87F92F"
+  },
+  {
+    "from": "assets\\act\\naiwa\\大笑奶蛙-动作修复.png",
+    "to": "assets\\characters\\attackers\\大笑奶蛙-动作修复.png",
+    "sha256": "9AEDB86072DAB33A92CAEC4124A6266A4998F8C7305EC6C55D21D92D14289BC6"
+  },
+  {
+    "from": "assets\\act\\naiwa\\大笑奶蛙-动作修复.prompts.json",
+    "to": "assets\\characters\\attackers\\大笑奶蛙-动作修复.prompts.json",
+    "sha256": "E172050609BDF05F043E7C6FC32F22F02F45320101FBF3335384122719FCF8D8"
+  },
+  {
+    "from": "assets\\act\\naiwa\\大笑奶蛙-感染大笑.png",
+    "to": "assets\\characters\\attackers\\大笑奶蛙-感染大笑.png",
+    "sha256": "EC05DF5CE0229C56D4A42B3CE027341411DBACD89E55BEACA8A2E779C8404F00"
+  },
+  {
+    "from": "assets\\act\\naiwa\\大笑奶蛙-感染大笑.prompts.json",
+    "to": "assets\\characters\\attackers\\大笑奶蛙-感染大笑.prompts.json",
+    "sha256": "64B64C784041DB0A3D2D658D6CCBAF66320D0DAEE3F1B903DFB3B84132A4848D"
+  },
+  {
+    "from": "assets\\act\\naiwa\\大笑奶蛙-流畅断手行走.png",
+    "to": "assets\\characters\\attackers\\大笑奶蛙-流畅断手行走.png",
+    "sha256": "DE5C8B0C0A1E9E515A71023361F5186FB69B08ED46C5D4EB21850CE3EC586D9D"
+  },
+  {
+    "from": "assets\\act\\naiwa\\大笑奶蛙-流畅断手行走.prompts.json",
+    "to": "assets\\characters\\attackers\\大笑奶蛙-流畅断手行走.prompts.json",
+    "sha256": "1814952243D85DB857DB615E57805809E5DDAE4F4125A037BB089743D47D45DF"
+  },
+  {
+    "from": "assets\\act\\naiwa\\大笑奶蛙-流畅行走.png",
+    "to": "assets\\characters\\attackers\\大笑奶蛙-流畅行走.png",
+    "sha256": "14C86D1C5F34426690D63F02B7D29F87B255EB253EBC5C84B65A4EA2117FCEBB"
+  },
+  {
+    "from": "assets\\act\\naiwa\\大笑奶蛙-流畅行走.prompts.json",
+    "to": "assets\\characters\\attackers\\大笑奶蛙-流畅行走.prompts.json",
+    "sha256": "11288EF1E6F49B9A3E95448E2B8BC6ADDDB2D9B969EF236F49752DDCDF3B6291"
+  },
+  {
+    "from": "assets\\act\\naiwa\\大笑奶蛙-失败咀嚼.png",
+    "to": "assets\\characters\\attackers\\大笑奶蛙-失败咀嚼.png",
+    "sha256": "642E88D5A6F72AA042ABDE16206A7B8E48133EC5DB1AB66F48253F6F3BC73FFD"
+  },
+  {
+    "from": "assets\\act\\naiwa\\大笑奶蛙-失败咀嚼.prompts.json",
+    "to": "assets\\characters\\attackers\\大笑奶蛙-失败咀嚼.prompts.json",
+    "sha256": "4EE675B9418E30FD0C74F181837B99963CD36B1C4F02A3EDDF7D73383B7117EF"
+  },
+  {
+    "from": "assets\\act\\naiwa\\大笑奶蛙.png",
+    "to": "assets\\characters\\attackers\\大笑奶蛙.png",
+    "sha256": "8F321109A3750A30346C87D4A48C29B11FA9726AB383E6E7A153D71529706EB0"
+  },
+  {
+    "from": "assets\\act\\naiwa\\奶蛋-校色.prompts.json",
+    "to": "assets\\characters\\attackers\\奶蛋-校色.prompts.json",
+    "sha256": "A9D3C22FD55EB7F070EA3F8E3D97DF2D58C0D100C7FBC3BB61529A39BD67846C"
+  },
+  {
+    "from": "assets\\act\\naiwa\\奶蛋.png",
+    "to": "assets\\characters\\attackers\\奶蛋.png",
+    "sha256": "0BAFEE520303BEF5DE6207BFD7DA48EC761CC2A175A5C84EF3DA4F00F6F34D83"
+  },
+  {
+    "from": "assets\\act\\naiwa\\奶蛋.prompts.json",
+    "to": "assets\\characters\\attackers\\奶蛋.prompts.json",
+    "sha256": "968EC1C515EDE35DA959399FA5515106E6224E8B49BA6F1DEC89F2D701DDE86A"
+  },
+  {
+    "from": "assets\\act\\naiwa\\奶鸡.png",
+    "to": "assets\\characters\\attackers\\奶鸡.png",
+    "sha256": "F0A192A71B8CF365D511D758E8A5F1C6722AB88B938586EE531A91D04993F20F"
+  },
+  {
+    "from": "assets\\act\\naiwa\\普通奶蛙-步态部件.png",
+    "to": "assets\\characters\\attackers\\普通奶蛙-步态部件.png",
+    "sha256": "792F57B4BBD6C5698411C5C8E4D0BEB4631E5D55679BEF35D866CE640B343A1D"
+  },
+  {
+    "from": "assets\\act\\naiwa\\普通奶蛙-步态部件.prompts.json",
+    "to": "assets\\characters\\attackers\\普通奶蛙-步态部件.prompts.json",
+    "sha256": "CA19431193A8A8BE2A43B6FF4A694082851B509DB96131F2BFA2C4EDB5ED39A9"
+  },
+  {
+    "from": "assets\\act\\naiwa\\普通奶蛙.png",
+    "to": "assets\\characters\\attackers\\普通奶蛙.png",
+    "sha256": "8B89F0A857B065F217ADFDED79131E07ECB6E25FBB425A10B1935A8946DA61B9"
+  },
+  {
+    "from": "assets\\act\\naiwa\\普通奶蛙.prompts.json",
+    "to": "assets\\characters\\attackers\\普通奶蛙.prompts.json",
+    "sha256": "E59A340DF08AE1B6B632914EAE9D954CAA01C4701EBA5ED1766688BEC633C3B9"
+  },
+  {
+    "from": "assets\\sprite\\doubao\\不绕弯豆包.png",
+    "to": "assets\\portraits\\不绕弯豆包.png",
+    "sha256": "C2536E55273D88858D9900A1E0BACE6637A8C4C8716E845E5C95322E77C3A59F"
+  },
+  {
+    "from": "assets\\sprite\\doubao\\豆馅射手.png",
+    "to": "assets\\portraits\\豆馅射手.png",
+    "sha256": "4CC4A9350E0E745F980F1055EE971C590E382FE220DFC28E4C9115B0CF848240"
+  },
+  {
+    "from": "assets\\sprite\\doubao\\和面豆包.png",
+    "to": "assets\\portraits\\和面豆包.png",
+    "sha256": "F01A4CF7C0BFC8F39B91EAC4716E427A4D0FE085F16F80F52B8F25F959C39FB5"
+  },
+  {
+    "from": "assets/campaign/fudu_doubao.png",
+    "to": "assets/characters/defenders/fudu_doubao.png",
+    "sha256": "1F03CF61010B7C239BE7EA877E714787C7A75138245CADD14FA97EB9997D87F4"
+  },
+  {
+    "from": "assets/campaign/hoola_frog.png",
+    "to": "assets/characters/attackers/hoola_frog.png",
+    "sha256": "831841492EB84E95073A74CB7735820EE9665A93A5AE78A4E9E3A644E8483398"
+  },
+  {
+    "from": "assets/campaign/kaimen_doubao.png",
+    "to": "assets/characters/defenders/kaimen_doubao.png",
+    "sha256": "5F2DCF2F542EC0D2E00A4B4FB187071E8B9DDDC6FEE73031FA0267341FC1A2AA"
+  },
+  {
+    "from": "assets/campaign/luanhui_doubao.png",
+    "to": "assets/characters/defenders/luanhui_doubao.png",
+    "sha256": "1F252C5E0F8E0FB78FE1CECB6D7756DC54145DBE4B74E520DF9BFCA3DD4B1CD9"
+  },
+  {
+    "from": "assets/campaign/moyu_doubao.png",
+    "to": "assets/characters/defenders/moyu_doubao.png",
+    "sha256": "2DE369770D714CF8E8740492BA3265BB5CB38F5CC9202D646C4029E01C6768FE"
+  },
+  {
+    "from": "assets/campaign/tangbao_doubao.png",
+    "to": "assets/characters/defenders/tangbao_doubao.png",
+    "sha256": "E687E13356B0F79AA49EDC9CB49E96E6706D7A2CCD2791C838D2ED5353D70A50"
+  },
+  {
+    "from": "assets/campaign/yizhen_doubao.png",
+    "to": "assets/characters/defenders/yizhen_doubao.png",
+    "sha256": "9395A7BC1828C8AD8415887B0A3AC53327AF6A508293681881213E522FD45117"
+  },
+  {
+    "from": "assets/campaign/zhaxin_doubao.png",
+    "to": "assets/characters/defenders/zhaxin_doubao.png",
+    "sha256": "1439310FB3D884D6861D7AC35F8E1B7F81C29A1D34A725C15A391BC3834E2EBF"
+  },
+  {
+    "from": "assets/campaign/catalog.json",
+    "to": "assets/characters/catalog.json",
+    "sha256": "8F6795D2F8B376D07FF638CE7729A5BCCD23A80DE7A7CAD717E025A04F5F58C3"
+  },
+  {
+    "from": "assets\\battle_field\\白天战场.png",
+    "to": "assets\\backgrounds\\白天战场.png",
+    "sha256": "8CC67272AD4AB877E0553119DA7C43AD11F6B4C5900AFA6D2D5E4DA2DA6D7089"
+  },
+  {
+    "from": "assets\\homepage\\背景.png",
+    "to": "assets\\home\\背景.png",
+    "sha256": "62036EDB9EAD137A9B849AE51A4AD93C3CBB6115CB637B39B8E091D269147F61"
+  },
+  {
+    "from": "assets\\homepage\\开始游戏按钮.png",
+    "to": "assets\\home\\开始游戏按钮.png",
+    "sha256": "91302741DF5B628BBE767BDF210AA55A11D6D6AE7112EB4E72471117A0F499DE"
+  },
+  {
+    "from": "assets\\homepage\\主体.png",
+    "to": "assets\\home\\主体.png",
+    "sha256": "7E8B3D7A825390A0AEFA8895D58C1E915B666309E4587D91059814021DD027BD"
+  },
+  {
+    "from": "assets\\mower\\大肥鱼.png",
+    "to": "assets\\props\\大肥鱼.png",
+    "sha256": "B7D379A0884C2C1D468C409B2B57C072632B117026FD70BC1EDAB97FBA6C304F"
+  },
+  {
+    "from": "assets/others/豆包卡片框.png",
+    "to": "assets/ui/豆包卡片框.png",
+    "sha256": "B563C74E3D13FF2A1B09BDE730C804607F3B7DDBF2D02399CC1DFAB370812C41"
+  },
+  {
+    "from": "assets/others/豆包选卡框.png",
+    "to": "assets/ui/豆包选卡框.png",
+    "sha256": "C47AEC95A1C4C0CFA77D9603692BBEC45BD6B51996BEC2AED694951595068606"
+  },
+  {
+    "from": "assets/others/关卡进度条.png",
+    "to": "assets/ui/关卡进度条.png",
+    "sha256": "7C73541F2A2E7E03961E9DE22558EE8AE1D3A483F78C848C0387711BC7D689AC"
+  },
+  {
+    "from": "assets/others/关卡旗帜.png",
+    "to": "assets/ui/关卡旗帜.png",
+    "sha256": "910E91CB17102ECC59E9AAB3D3458D26B4000E7FE76FE9A0E9A0D2873431AA67"
+  },
+  {
+    "from": "assets/others/夹子.png",
+    "to": "assets/props/夹子.png",
+    "sha256": "FB98EE3AD23115E8D9C26FAA450F4D37B531C946470D8F7E5B913596349E9EDB"
+  },
+  {
+    "from": "assets/others/面团.png",
+    "to": "assets/props/面团.png",
+    "sha256": "AFB02A38C6AA476376E5AF208FF9FD917F823904AF03D271F09D45C860488B6A"
+  },
+  {
+    "from": "assets/others/面团值.png",
+    "to": "assets/ui/面团值.png",
+    "sha256": "7A44201817E41A4770267537EACFB2166758D3D3E38F24FE8ECF068293DB31B0"
+  },
+  {
+    "from": "scripts/annotate-grid.mjs",
+    "to": "scripts/tools/annotate-grid.mjs",
+    "sha256": "DC6E9C7D80B3D156B81E9684F063D399049926C955BAB323C9D48F1B1AC7DB84"
+  },
+  {
+    "from": "scripts/campaign-checks.ts",
+    "to": "scripts/checks/campaign-checks.ts",
+    "sha256": "987BEB5EEF2B1C46EC356D46615EF707C8409E644014C4DBC5F82EA5E341989D"
+  },
+  {
+    "from": "scripts/campaign-playthrough.ts",
+    "to": "scripts/checks/campaign-playthrough.ts",
+    "sha256": "A3DD3938F5F27EA2160D837C074F708A38D441DCAE6EAC69288E4CD52002DBA1"
+  },
+  {
+    "from": "scripts/check-reward-flow.mjs",
+    "to": "scripts/checks/check-reward-flow.mjs",
+    "sha256": "9DC5E4415ABC728AFDD8C469D3F7E5DF6FC5192B8C9854207E9A933D23B79A37"
+  },
+  {
+    "from": "scripts/combat-checks.ts",
+    "to": "scripts/checks/combat-checks.ts",
+    "sha256": "DD384B03318001494CF4AB74943C502FEEC6FBFC2E93C36A8F5608C72DB2D603"
+  },
+  {
+    "from": "scripts/ensure-assets.mjs",
+    "to": "scripts/assets/ensure-assets.mjs",
+    "sha256": "71EC04B9A3BB30B7174BF87182EAB2442AD1FF3045058993B01679FAE877256B"
+  },
+  {
+    "from": "scripts/measure-grid.mjs",
+    "to": "scripts/tools/measure-grid.mjs",
+    "sha256": "7C9D9182FB86488C67D36C8920EAB601252097B7235C9F50230FEAF9A44E87C4"
+  },
+  {
+    "from": "scripts/overlay-grid.mjs",
+    "to": "scripts/tools/overlay-grid.mjs",
+    "sha256": "9EA8457966F70A1DDF56D10349E14E02B8EF9EFF92CF1F3DA81670BAED932D6C"
+  },
+  {
+    "from": "scripts/prepare-bg.mjs",
+    "to": "scripts/assets/prepare-bg.mjs",
+    "sha256": "05632057072BA7E537DE9C5967A88D8EF6ED00BD6E609C43BC856D2EC94574ED"
+  },
+  {
+    "from": "scripts/prepare-campaign.mjs",
+    "to": "scripts/assets/prepare-campaign.mjs",
+    "sha256": "0FCDA11BBB745E2F1B45A7803B60E52AB6BAB48D0C752A88BB3369D1BD3C0A82"
+  },
+  {
+    "from": "scripts/prepare-home.mjs",
+    "to": "scripts/assets/prepare-home.mjs",
+    "sha256": "9F965E28F576A356AEFE8F145B42B0638FC8C4CE68E2B99F6D99D07BB18D3019"
+  },
+  {
+    "from": "scripts/prepare-others.mjs",
+    "to": "scripts/assets/prepare-others.mjs",
+    "sha256": "99545D68FB1609B2046C4FD78E466C0E3ED045AB6DEB1B338BC4DC2EC9C060D4"
+  },
+  {
+    "from": "scripts/prepare-ui.mjs",
+    "to": "scripts/assets/prepare-ui.mjs",
+    "sha256": "E7A792A8A0FE6B811C954EADB9C47ABBA4740AA931C8F0A8B2F005D4512D4231"
+  },
+  {
+    "from": "scripts/reward-flow-entry.ts",
+    "to": "scripts/checks/reward-flow-entry.ts",
+    "sha256": "0E532A01B0335FB185A55EB68EE81B6AAD124E8AD62BADC9421943B57A55A877"
+  },
+  {
+    "from": "scripts/slice-sprites.mjs",
+    "to": "scripts/assets/slice-sprites.mjs",
+    "sha256": "C391149A85A8A9F6C3C99A5C031E998A6134EF4E35EBCCCEBE9A355977C380FC"
+  },
+  {
+    "from": "docs/campaign-conveyor-narrow.png",
+    "to": "docs/screenshots/campaign-conveyor-narrow.png",
+    "sha256": "EFF2E7A12438DF381BB21ED70B39AB68E5D06FAA8EF2F352E9EDEB5386B85E47"
+  },
+  {
+    "from": "docs/campaign-conveyor.png",
+    "to": "docs/screenshots/campaign-conveyor.png",
+    "sha256": "1C081630667AFA9E41133DCDB15B392CDF2FD007E566A71A4ABAF836FC66B708"
+  },
+  {
+    "from": "docs/campaign-debug-levels.png",
+    "to": "docs/screenshots/campaign-debug-levels.png",
+    "sha256": "223B2940E4F4B6D3B03235817103377B6268B79A0856E7FFB0E5538CA2440208"
+  },
+  {
+    "from": "docs/campaign-egg-invasion.png",
+    "to": "docs/screenshots/campaign-egg-invasion.png",
+    "sha256": "929D57B35739CFFBC4D58B956B9104C24B30DA9ECE244CA0B67CC1D6BED5E6E7"
+  },
+  {
+    "from": "docs/campaign-preview.html",
+    "to": "docs/previews/campaign-preview.html",
+    "sha256": "D8F8FBF25CBA76AFFC9F94EAAEA12D9B4D8DA9B0B5B2289B8B8DD1F58186BFCA"
+  },
+  {
+    "from": "docs/campaign-roster.png",
+    "to": "docs/screenshots/campaign-roster.png",
+    "sha256": "B30E5D844FBAF97C296B6721C769D4C3BD5D77986A734204AF92F7E6C9B03635"
+  },
+  {
+    "from": "docs/campaign-validation.txt",
+    "to": "docs/reports/campaign-validation.txt",
+    "sha256": "B9B46BD254C7255747228C20217C834DACB1EE666772FB41374D1CFE9701DC4D"
+  },
+  {
+    "from": "docs/card-effect-tooltip.png",
+    "to": "docs/screenshots/card-effect-tooltip.png",
+    "sha256": "EBA1E6DFF2DD015E3ED61FD9EC941DAD2228DE977EB1713C9BB18D1D8EA39520"
+  },
+  {
+    "from": "docs/combat-preview.html",
+    "to": "docs/previews/combat-preview.html",
+    "sha256": "74090D5C84F3A57A1AB6D9343DC2E5D90F1D3AD1D569430D5A0CF120F82CB25C"
+  },
+  {
+    "from": "docs/frog-animation-preview.html",
+    "to": "docs/previews/frog-animation-preview.html",
+    "sha256": "8125F29B02D5EB5F79092DE65F6E304A914590355E84A958F7B40199978FAE53"
+  },
+  {
+    "from": "docs/frog-animation-preview.png",
+    "to": "docs/screenshots/frog-animation-preview.png",
+    "sha256": "E5EEC4BEB989A9DAD9DF4A7E3FB9329827643A3386BEB72664C526F80BE7DCB5"
+  },
+  {
+    "from": "docs/frog-frames-fixed.png",
+    "to": "docs/archive/screenshots/frog-frames-fixed.png",
+    "sha256": "F00994ED51778F4ED31525F242C13955DB3F0B64EE448A93FF9B29B58CBCA429"
+  },
+  {
+    "from": "docs/frog-walk-alternating.png",
+    "to": "docs/archive/screenshots/frog-walk-alternating.png",
+    "sha256": "740F7F9DC735FD40032CDE0D7D12D105A0E3B0817F2F643D2D358AC3F4C7A797"
+  },
+  {
+    "from": "docs/frog-walk-far-step.png",
+    "to": "docs/archive/screenshots/frog-walk-far-step.png",
+    "sha256": "2DF1EAA6D0BD553C414D841A64991923E00DEDEB88C6456FDFA69C95E5A9407B"
+  },
+  {
+    "from": "docs/frog-walk-near-step.png",
+    "to": "docs/archive/screenshots/frog-walk-near-step.png",
+    "sha256": "1DF1C5B9ACD92D9B28E0FF5A5896B21A74401F2327E72A61CCC9C3959A8B58B2"
+  },
+  {
+    "from": "docs/frog-walk-smooth-far.png",
+    "to": "docs/archive/screenshots/frog-walk-smooth-far.png",
+    "sha256": "CC2214831F61C2567E8AA1851768B07F027A5FA435C76B2D0A7263DBF2D3A1DA"
+  },
+  {
+    "from": "docs/frog-walk-smooth-near.png",
+    "to": "docs/archive/screenshots/frog-walk-smooth-near.png",
+    "sha256": "4B01349F7A2800CA41FBC7EAE80C72116FDFCD51B7B955B03A28648716176619"
+  },
+  {
+    "from": "docs/frog-walk-smooth.png",
+    "to": "docs/screenshots/frog-walk-smooth.png",
+    "sha256": "9F69A96EAF500ED1C7AAEC208DCE672319963DF00A2605BCFF3F954039ABA1BB"
+  },
+  {
+    "from": "docs/home-redrawn.png",
+    "to": "docs/screenshots/home-redrawn.png",
+    "sha256": "3E1E426CECE09F0E16FC6434EC7E4BA0D1B551BF405CFABBE56E8BDA7B0377A8"
+  },
+  {
+    "from": "docs/lose-animation-preview.html",
+    "to": "docs/previews/lose-animation-preview.html",
+    "sha256": "40DB94F69CB3A1823877F80CA10CDB503042660471589083E3DD1FF05D1EBA6A"
+  },
+  {
+    "from": "docs/lose-narrow.png",
+    "to": "docs/screenshots/lose-narrow.png",
+    "sha256": "1FB5FF230C441D4FD49F51783827087F0C15A491E8229A8000B09560E6D42156"
+  },
+  {
+    "from": "docs/lose-redrawn.png",
+    "to": "docs/screenshots/lose-redrawn.png",
+    "sha256": "940CB6E1C1455B1E411407179FF9B05B2E239FE67C5F348A375EF204DE9B34CB"
+  },
+  {
+    "from": "docs/modes-redrawn.png",
+    "to": "docs/screenshots/modes-redrawn.png",
+    "sha256": "3631E3BE96FB751062B9AA628E42963452EEE2AAF36C87B12011ED931FA00D00"
+  },
+  {
+    "from": "docs/naiji-after.png",
+    "to": "docs/archive/screenshots/naiji-after.png",
+    "sha256": "A4EBC4F2CFA58603AD2B7D853B6A3DE8EA486C147483A1DDF6DE5A4D38DF1396"
+  },
+  {
+    "from": "docs/naiji-before.png",
+    "to": "docs/archive/screenshots/naiji-before.png",
+    "sha256": "6AA03B09AC747E6B923A410391EA19A929D7B36E94EB7B2D8A9E1550B62E55A8"
+  },
+  {
+    "from": "docs/ordinary-walk-alternating.png",
+    "to": "docs/screenshots/ordinary-walk-alternating.png",
+    "sha256": "A141D423C7632B9C1589BD3E719F8FE84C3FCB1B5E5F69B1480FA7FE5EF8BB08"
+  },
+  {
+    "from": "docs/ordinary-walk-preview.html",
+    "to": "docs/previews/ordinary-walk-preview.html",
+    "sha256": "65027ED2E7351BBFF155FDEAAF79C124D9641F6B2CD798FEE38EA4A608EE8299"
+  },
+  {
+    "from": "docs/pause-narrow.png",
+    "to": "docs/screenshots/pause-narrow.png",
+    "sha256": "D088E9CF0280273E4CC6C34FADE0CA5D967E1C410B15E1B763DE924FC5E62D2E"
+  },
+  {
+    "from": "docs/pause-redrawn.png",
+    "to": "docs/screenshots/pause-redrawn.png",
+    "sha256": "CECC80E58F76F022E9A5AFDBCA478CBC801DFE524456B0080D693B0A2A20C338"
+  },
+  {
+    "from": "docs/pause-volume-fixed.png",
+    "to": "docs/screenshots/pause-volume-fixed.png",
+    "sha256": "EB1BDA95B104D833665B692F69C0A2E7914F7E835115A648B8F90469F544A2D1"
+  },
+  {
+    "from": "docs/screenshot.png",
+    "to": "docs/archive/screenshots/screenshot.png",
+    "sha256": "E9857A1C9FC218A665EF9A18DC90009B1D52C2BE095A3DE28FAA453DCCD18E60"
+  },
+  {
+    "from": "docs/ui-audit.json",
+    "to": "docs/reports/ui-audit.json",
+    "sha256": "15D8D96CC15D8A326676E8B86AF931BCF78C3D16A2765B9A155A468478586559"
+  },
+  {
+    "from": "docs/ui-redrawn-preview.png",
+    "to": "docs/archive/screenshots/ui-redrawn-preview.png",
+    "sha256": "F7791D9F9CF1939168CBC315228915932B8FCB0BC6828CB28675E436C84F65CB"
+  }
+]

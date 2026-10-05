@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><base href="/"><title>奶蛙战斗预览</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#101c17;color:#fff;font:14px system-ui;overflow:hidden}canvas{display:block;width:100vw;height:100vh;margin:auto}canvas.narrow{width:min(420px,100vw)}aside{position:fixed;bottom:8px;left:8px;background:#192a24;padding:8px;border-radius:6px;max-width:calc(100vw - 16px)}button{padding:8px;margin:3px;font:inherit;cursor:pointer;background:#fff4d5;color:#49280f;border:1px solid #ab864c;border-radius:4px}button:focus-visible{outline:3px solid #ffe070}button:disabled{opacity:.5;cursor:default}button:hover{filter:brightness(1.1)}button:active{transform:translateY(1px)}p{margin:4px}
+</style></head><body><canvas aria-label="普通奶蛙、笑声感染、摸鱼减速、单体推搡与奶蛋"></canvas>
+<aside><button id="reset" disabled>重置战斗</button><button id="pause" disabled>暂停预览</button><button id="half" disabled>跳移中点</button><button id="infect" disabled>感染完成</button><button id="roll" disabled>奶蛋滚动</button><button id="vault" disabled>奶蛋跳跃</button><button id="crack" disabled>奶蛋裂壳</button><button id="hatch" disabled>裂壳完成</button><button id="break" disabled>打碎奶蛋</button><button id="size">窄屏预览</button><p id="status" role="status">加载中</p></aside>
+<script type="module">
+import { Assets } from '/src/core/assets.ts';
+import { Game } from '/src/game/game.ts';
+import { LEVELS,DESIGN_W,DESIGN_H } from '/src/game/config.ts';
+import { Defender } from '/src/game/entities.ts';
+import { DEFENDERS } from '/src/game/units.ts';
+import { rowFootY } from '/src/game/grid.ts';
+import { sfx } from '/src/core/sfx.ts';
+import { hurtAttacker } from '/src/game/systems.ts';
+const assets=new Assets(),canvas=document.querySelector('canvas'),ctx=canvas.getContext('2d'),status=document.querySelector('#status');
+let game,paused=false,scale=1,ox=0,oy=0;
+function resize(){const rect=canvas.getBoundingClientRect(),dpr=Math.min(devicePixelRatio||1,2);canvas.width=rect.width*dpr;canvas.height=rect.height*dpr;scale=Math.min(rect.width/DESIGN_W,rect.height/DESIGN_H);ox=(rect.width-DESIGN_W*scale)/2;oy=(rect.height-DESIGN_H*scale)/2;}
+function plant(id,row,x,col){const def=DEFENDERS.find(d=>d.id===id),d=new Defender(def,col,row,x,rowFootY(row),assets);game.defenders.push(d);if(def.occupiesCell!==false)game.occupied[row][col]=d;return d;}
+function frog(id,row,x){game.spawnAttacker(row,id);const a=game.attackers.at(-1);a.x=x;a.anim.t=0;a.speedMul=1;return a;}
+function fresh(){game=new Game(assets,LEVELS[6]);game.dough=999;game.firstFrogAt=1e9;
+frog('ordinary_frog',0,1100);plant('hemian_doubao',1,800,4);frog('laugh_frog',1,882);
+plant('moyu_doubao',2,660,3);plant('hemian_doubao',2,790,4);frog('laugh_frog',2,872);
+plant('buraowan_doubao',3,780,4);frog('ordinary_frog',3,820);frog('ordinary_frog',3,846);
+plant('hemian_doubao',4,600,2);plant('hemian_doubao',4,790,4);frog('nai_egg',4,970);paused=false;document.querySelector('#pause').textContent='暂停预览';}
+function advance(seconds){for(let i=0;i<Math.round(seconds*120);i++)game.update(1/120);}
+await assets.load();fresh();resize();for(const b of document.querySelectorAll('button'))b.disabled=false;
+document.querySelector('#reset').onclick=fresh;
+document.querySelector('#pause').onclick=()=>{paused=!paused;document.querySelector('#pause').textContent=paused?'继续预览':'暂停预览';};
+document.querySelector('#half').onclick=()=>{fresh();advance(1.4);paused=true;document.querySelector('#pause').textContent='继续预览';};
+document.querySelector('#infect').onclick=()=>{fresh();advance(3.15);paused=true;document.querySelector('#pause').textContent='继续预览';};
+function eggStage(seconds){fresh();game.attackers.find(a=>a.def.id==='nai_egg').x=870;advance(seconds);paused=true;document.querySelector('#pause').textContent='继续预览';}
+document.querySelector('#vault').onclick=()=>eggStage(.41);
+document.querySelector('#roll').onclick=()=>{fresh();advance(1);paused=true;document.querySelector('#pause').textContent='继续预览';};
+document.querySelector('#crack').onclick=()=>eggStage(1.15);
+document.querySelector('#hatch').onclick=()=>eggStage(1.55);
+document.querySelector('#break').onclick=()=>{fresh();hurtAttacker(game,game.attackers.find(a=>a.def.id==='nai_egg'),99999);advance(.22);paused=true;document.querySelector('#pause').textContent='继续预览';};
+document.querySelector('#size').onclick=()=>{canvas.classList.toggle('narrow');resize();};window.addEventListener('resize',resize);
+canvas.addEventListener('pointermove',e=>{const r=canvas.getBoundingClientRect();game.onPointerMove({x:(e.clientX-r.left-ox)/scale,y:(e.clientY-r.top-oy)/scale});});
+let last=performance.now();function frame(now){const dt=Math.min((now-last)/1000,.05);last=now;if(!paused)game.update(dt);ctx.setTransform(1,0,0,1,0,0);ctx.fillStyle='#101c17';ctx.fillRect(0,0,canvas.width,canvas.height);const dpr=Math.min(devicePixelRatio||1,2);ctx.setTransform(dpr*scale,0,0,dpr*scale,dpr*ox,dpr*oy);game.draw(ctx);const egg=game.attackers.find(a=>a.row===4);status.textContent=`感染行：${game.attackers.filter(a=>a.row===1).length}只；减速行：${game.attackers.filter(a=>a.row===2).length}只；末行：${egg?egg.def.name+' / '+({walk:'行走',vault:'跳跃',hatch:'裂壳',dying:'碎裂',eat:'进攻'}[egg.state]):'无'}；${paused?'已暂停':'播放中'}`;requestAnimationFrame(frame);}requestAnimationFrame(frame);
+</script></body></html>

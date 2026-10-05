@@ -6,13 +6,21 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
+    "dev": "node scripts/assets/ensure-assets.mjs && vite",
+    "build": "node scripts/assets/ensure-assets.mjs && tsc && vite build",
     "preview": "vite preview",
-    "assets:slice": "node scripts/slice-sprites.mjs",
-    "assets:bg": "node scripts/prepare-bg.mjs",
-    "assets:home": "node scripts/prepare-home.mjs",
-    "assets:others": "node scripts/prepare-others.mjs"
+    "check:flow": "node scripts/assets/ensure-assets.mjs && node scripts/checks/check-reward-flow.mjs",
+    "check:project": "node scripts/assets/ensure-assets.mjs && node scripts/checks/check-project.mjs",
+    "assets:all": "node scripts/assets/build-assets.mjs",
+    "assets:catalog": "node scripts/assets/prepare-campaign.mjs",
+    "assets:slice": "node scripts/assets/slice-sprites.mjs",
+    "assets:bg": "node scripts/assets/prepare-bg.mjs",
+    "assets:home": "node scripts/assets/prepare-home.mjs",
+    "assets:others": "node scripts/assets/prepare-others.mjs",
+    "assets:ui": "node scripts/assets/prepare-ui.mjs",
+    "grid:measure": "node scripts/tools/measure-grid.mjs",
+    "grid:overlay": "node scripts/tools/overlay-grid.mjs",
+    "grid:annotate": "node scripts/tools/annotate-grid.mjs"
   },
   "devDependencies": {
     "sharp": "^0.34.0",

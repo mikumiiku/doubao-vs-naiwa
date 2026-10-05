@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <base href="/" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>奶蛋入侵 · 对话预览</title>
+    <style>
+      body {
+        margin: 0;
+        background: #1a2027;
+      }
+      canvas {
+        display: block;
+        width: 100vw;
+        height: 100vh;
+      }
+      .preview-controls {
+        position: fixed;
+        top: 8px;
+        left: 8px;
+        z-index: 40;
+        display: flex;
+        gap: 8px;
+      }
+      .preview-controls button {
+        padding: 8px 12px;
+        background: #fdf3d8;
+        color: #5b2d12;
+        border: 2px solid #8a5a28;
+        border-radius: 8px;
+        cursor: pointer;
+        font: 14px system-ui;
+        min-height: 44px;
+      }
+      .preview-controls button:hover {
+        background: #ffd54a;
+      }
+      .preview-controls button:focus-visible {
+        outline: 3px solid #a82e25;
+        outline-offset: 2px;
+      }
+      .preview-controls button:active {
+        transform: translateY(1px);
+      }
+      body.narrow .egg-dialogue {
+        width: min(420px, 100vw);
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="preview-controls">
+      <button id="width" type="button">420像素预览</button
+      ><button id="restart" type="button">重播对话</button>
+    </div>
+    <canvas width="1585" height="992" aria-label="奶蛋入侵战场"></canvas>
+    <script type="module">
+      import { Assets } from "/src/core/assets.ts";
+      import { Game } from "/src/game/game.ts";
+      import { LEVELS } from "/src/game/config.ts";
+      import { EggDialogueView } from "/src/game/eggdialogue.ts";
+      const assets = new Assets();
+      await assets.load();
+      const canvas = document.querySelector("canvas"),
+        ctx = canvas.getContext("2d");
+      let game = new Game(assets, LEVELS[4]);
+      const view = new EggDialogueView(assets, canvas);
+      document.querySelector("#width").onclick = () => {
+        document.body.classList.toggle("narrow");
+        document.querySelector("#width").textContent =
+          document.body.classList.contains("narrow")
+            ? "恢复宽屏"
+            : "420像素预览";
+      };
+      document.querySelector("#restart").onclick = () => {
+        game = new Game(assets, LEVELS[4]);
+        view.sync(game);
+      };
+      let last = performance.now();
+      function frame(now) {
+        game.update(Math.min(0.1, (now - last) / 1000));
+        last = now;
+        game.draw(ctx);
+        view.sync(game);
+        requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,5 @@
+{
+  "tool": "image_gen",
+  "prompt": "EDIT this exact 4-column 2-row 8-character transparent sprite sheet. Preserve ALL eight poses pixel-for-pixel as closely as possible: same face, head, body, belly, BOTH LEGS and shoe placement, size, lighting, cell positions, transparent canvas dimensions1536x1024. Sole edit applied to EACH of eight frogs: remove the CAMERA-FACING NEAR gray hand and distal forearm on the screen-LEFT / central chest side. Replace that near hand/forearm with the same short smooth rounded yellow arm stump projecting from the large near shoulder at screenLEFT, ending BEFORE the cream belly center. Keep the FAR gray hand at screenRIGHT next to the belly intact, with same fingers. Every frog has ONE remaining far gray hand and one near yellow stump. Never remove far hand. Never add gray near hand. No detached limbs, no blood. Do not change leg poses, body proportions, head position, foot overlaps, alpha, background, no glow or text. Keep EXACT4x2 layout and matching chronology.",
+  "asset": "大笑奶蛙-流畅断手行走.png"
+}

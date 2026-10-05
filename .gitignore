@@ -9,6 +9,8 @@ dist/
 
 # 由原始素材生成的运行时资源（pnpm assets:* 生成，不纳入版本库）
 public/assets/
+public/.tmp-assets/
+.cache/
 
 # 环境变量
 .env
@@ -37,3 +39,9 @@ Thumbs.db
 
 # 本地临时文件
 *.local
+
+# 编辑器的原子写入临时产物（vite.config.mjs 里已把这些排除出 watch，
+# 否则 Vite 会给临时文件装监听、目录一删就 EBUSY 崩掉 dev server）
+.*.tmpdir/
+*.tmpdir/
+*.tmp

@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/">
+  <title>奶蛙嚼嚼嚼 · 失败演出预览</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #101c17; overflow: hidden; color: #fdf3d8; font: 14px system-ui, "Microsoft YaHei", sans-serif; }
+    canvas { display: block; width: 100vw; height: 100vh; margin: auto; }
+    canvas.narrow { width: min(420px, 100vw); }
+    aside { position: fixed; left: 12px; top: 12px; padding: 8px; background: #192a24; border-radius: 8px; }
+    button { padding: 8px 12px; margin-right: 6px; border: 1px solid #ffd54a; background: #ffd54a; color: #5b2d12; border-radius: 6px; font: inherit; cursor: pointer; }
+    button:hover { filter: brightness(1.12); }
+    button:active { transform: translateY(1px); }
+    button:focus-visible { outline: 3px solid white; outline-offset: 3px; }
+    button:disabled { opacity: 0.5; cursor: default; }
+    #status { margin: 6px 0 0; }
+  </style>
+</head>
+<body>
+  <canvas aria-label="奶蛙嚼嚼嚼。重新开始或返回选关。"></canvas>
+  <aside>
+    <button id="replay" type="button" disabled>重播失败演出</button>
+    <button id="pause" type="button" disabled>暂停动画</button>
+    <button id="size" type="button">窄屏预览</button>
+    <p id="status" role="status">加载中…</p>
+  </aside>
+  <script type="module">
+    import { Assets } from '/src/core/assets.ts';
+    import { Game } from '/src/game/game.ts';
+    import { ModeSelect } from '/src/game/modeselect.ts';
+    import { DESIGN_W, DESIGN_H, HOME_LINE_X, LEVELS } from '/src/game/config.ts';
+    import { sfx } from '/src/core/sfx.ts';
+    const canvas = document.querySelector('canvas');
+    const ctx = canvas.getContext('2d');
+    const status = document.querySelector('#status');
+    const replay = document.querySelector('#replay');
+    const pause = document.querySelector('#pause');
+    const assets = new Assets();
+    if (new URLSearchParams(location.search).has('clean')) document.querySelector('aside').hidden = true;
+    let game, modes, scene = 'game', paused = false, scale = 1, ox = 0, oy = 0;
+    function resize() {
+      const dpr = Math.min(devicePixelRatio || 1, 2);
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      scale = Math.min(rect.width / DESIGN_W, rect.height / DESIGN_H);
+      ox = (rect.width - DESIGN_W * scale) / 2;
+      oy = (rect.height - DESIGN_H * scale) / 2;
+    }
+    function fresh() {
+      game = new Game(assets, LEVELS[0]);
+      game.onRestart = () => { fresh(); status.textContent = '已重新开始'; };
+      game.onExit = () => { scene = 'modes'; status.textContent = '已返回选关'; };
+      scene = 'game';
+      paused = false;
+      pause.textContent = '暂停动画';
+    }
+    function defeat() {
+      fresh();
+      game.spawnAttacker(0);
+      game.mowers[0].state = 'gone';
+      game.attackers[0].x = HOME_LINE_X - 1;
+      game.update(1 / 60);
+      status.textContent = '奶蛙嚼嚼嚼';
+    }
+    try {
+      await assets.load();
+      modes = new ModeSelect(assets, () => { fresh(); status.textContent = '已进入冒险模式'; }, () => { fresh(); });
+      // 首次预览静音；重播按钮通过真实越线触发失败音效。
+      fresh();
+      game.state = 'lose';
+      const originalLose = sfx.lose;
+      sfx.lose = () => {};
+      game.update(0);
+      sfx.lose = originalLose;
+      status.textContent = '奶蛙嚼嚼嚼';
+      replay.disabled = pause.disabled = false;
+      replay.addEventListener('click', defeat);
+      pause.addEventListener('click', () => {
+        paused = !paused;
+        pause.textContent = paused ? '继续动画' : '暂停动画';
+        sfx.syncPause(paused);
+      });
+      document.querySelector('#size').addEventListener('click', (event) => {
+        canvas.classList.toggle('narrow');
+        event.target.textContent = canvas.classList.contains('narrow') ? '全屏预览' : '窄屏预览';
+        resize();
+      });
+      canvas.addEventListener('pointerdown', (event) => {
+        const rect = canvas.getBoundingClientRect();
+        const point = { x: (event.clientX - rect.left - ox) / scale, y: (event.clientY - rect.top - oy) / scale };
+        if (scene === 'game') game.onPointerDown(point);
+        else modes.onPointerDown(point);
+      });
+      canvas.addEventListener('pointermove', (event) => {
+        const rect = canvas.getBoundingClientRect();
+        const point = { x: (event.clientX - rect.left - ox) / scale, y: (event.clientY - rect.top - oy) / scale };
+        if (scene === 'game') game.onPointerMove(point);
+        else modes.onPointerMove(point);
+      });
+      resize();
+      addEventListener('resize', resize);
+      let last = performance.now();
+      function frame(now) {
+        const dt = Math.min((now - last) / 1000, 0.1);
+        last = now;
+        if (!paused) {
+          if (scene === 'game') game.update(dt);
+          else modes.update(dt);
+        }
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.fillStyle = '#101c17';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        const dpr = Math.min(devicePixelRatio || 1, 2);
+        ctx.setTransform(dpr * scale, 0, 0, dpr * scale, ox * dpr, oy * dpr);
+        if (scene === 'game') game.draw(ctx);
+        else modes.draw(ctx);
+        requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    } catch (error) {
+      status.textContent = `加载失败：${error.message}`;
+    }
+  </script>
+</body>
+</html>

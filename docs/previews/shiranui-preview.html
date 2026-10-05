@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><base href="/"><meta name="viewport" content="width=device-width,initial-scale=1"><title>不知火蛙 · 动作检查</title>
+<style>body{margin:12px;background:#fdf3d8;color:#5b2d12;font:16px system-ui}button{font:inherit;padding:10px;margin:4px;min-height:44px;cursor:pointer}button:focus-visible{outline:3px solid #a82e25}canvas{display:block;width:min(100%,1200px);height:auto}output{display:block;margin:8px;min-height:28px}</style></head>
+<body><button data-scene="walk">完整步态</button><button data-scene="fan">挥扇滑步</button><button data-scene="wind">迎风豆馅</button><button data-scene="bite">啃咬</button><button data-scene="death">倒地</button><button id="step">前进0.1秒</button><button id="run">连续播放</button><audio controls preload="metadata" src="/assets/audio/shiranui-fan.m4a" aria-label="嘎嘎滴辣虾音效"></audio><output aria-live="polite"></output><canvas width="1585" height="992" aria-label="不知火蛙战场"></canvas>
+<script type="module">
+import { Assets } from '/src/core/assets.ts';
+import { Game } from '/src/game/game.ts';
+import { LEVELS } from '/src/game/config.ts';
+import { Attacker, Defender, Projectile } from '/src/game/entities.ts';
+import { ATTACKERS, DEFENDERS } from '/src/game/units.ts';
+import { rowFootY } from '/src/game/grid.ts';
+import { hurtAttacker, updateAttackers, updateProjectiles } from '/src/game/systems.ts';
+const assets = new Assets(); await assets.load();
+const canvas = document.querySelector('canvas'), ctx = canvas.getContext('2d'), output = document.querySelector('output');
+let game, frog, running = false;
+function scene(name) {
+  running = false;
+  document.querySelector('#run').textContent = '连续播放';
+  game = new Game(assets, {...LEVELS[9], trial:true, name:'不知火蛙动作检查', intro:'行进三格挥扇，风刃削弱轻型豆馅，借力滑步一格。', waves: [], kind:'battle'});
+  game.banner = ''; game.bannerT = 0;
+  frog = new Attacker(ATTACKERS.shiranui_frog, 2, 1000, rowFootY(2), assets);
+  frog.anim.t = 0;
+  game.attackers.push(frog);
+  if(name==='fan') frog.fanProgress = 2.99;
+  if(name==='wind') {
+    frog.state = 'fan'; frog.fanTimer = 0.35; frog.anim.set('fan',false); frog.anim.t = 0.35;
+    game.projectiles.push(new Projectile(2, 700, frog.y - 55, 420, 20));
+  }
+  if(name==='bite') {
+    const d = new Defender(DEFENDERS.find(d=>d.id==='tangbao_doubao'), 5, 2, 950, frog.y, assets);
+    game.defenders.push(d); game.occupied[2][5] = d;
+    updateAttackers(game, 0);
+  }
+  if(name==='death') hurtAttacker(game, frog, 200);
+  render();
+}
+function advance(dt) {
+  for(let left=dt; left>1e-8; left-=1/120) {
+    const step=Math.min(left,1/120);
+    updateAttackers(game,step); updateProjectiles(game,step); game.time+=step;
+  }
+  render();
+}
+function render() {
+  game.draw(ctx);
+  output.textContent = `状态 ${frog.state} · 动作 ${frog.anim.name} 第${frog.anim.currentIndex()+1}帧 · X ${frog.x.toFixed(1)} · 步行 ${frog.fanProgress.toFixed(2)}格 · 风刃 ${game.fanWinds.length} · 豆馅伤害 ${game.projectiles[0]?.damage??'—'}`;
+}
+document.querySelectorAll('[data-scene]').forEach(b=>b.onclick=()=>scene(b.dataset.scene));
+document.querySelector('#step').onclick=()=>advance(0.1);
+document.querySelector('#run').onclick=()=>{running=!running; document.querySelector('#run').textContent=running?'暂停播放':'连续播放'};
+let previous=performance.now();
+function frame(now){const dt=Math.min((now-previous)/1000,0.05);previous=now;if(running)advance(dt);requestAnimationFrame(frame)}
+scene('walk'); requestAnimationFrame(frame);
+</script></body></html>

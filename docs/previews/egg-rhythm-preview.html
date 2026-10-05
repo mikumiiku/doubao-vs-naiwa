@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <base href="/" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>奶蛋入侵 · 节奏检查</title>
+    <style>
+      body {
+        margin: 12px;
+        background: #fdf3d8;
+        color: #5b2d12;
+        font: 16px system-ui;
+      }
+      button {
+        padding: 10px;
+        margin: 4px;
+        cursor: pointer;
+        background: #fdf3d8;
+        border: 2px solid #8a5a28;
+        border-radius: 8px;
+        min-height: 44px;
+      }
+      button:hover {
+        background: #ffd54a;
+      }
+      button:active {
+        transform: translateY(1px);
+      }
+      button:focus-visible {
+        outline: 3px solid #a82e25;
+        outline-offset: 2px;
+      }
+      canvas {
+        display: block;
+        width: min(100%, 1200px);
+        height: auto;
+      }
+      canvas.narrow {
+        width: min(100%, 420px);
+      }
+      output {
+        display: block;
+        min-height: 70px;
+        max-width: 1200px;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="warm">热身段</button><button id="final">终段连打</button><button id="step">前进50毫秒</button
+    ><button id="run">开始演练</button><button id="narrow">窄屏预览</button><output aria-live="polite"></output
+    ><canvas width="1585" height="992" aria-label="节奏检查战场"></canvas>
+    <script type="module">
+      import { Assets } from '/src/core/assets.ts';
+      import { Game } from '/src/game/game.ts';
+      import { LEVELS } from '/src/game/config.ts';
+      import { EGG_CHART } from '/src/game/eggrhythm.ts';
+      import { eggCenter } from '/src/game/special.ts';
+      const assets = new Assets();
+      await assets.load();
+      const canvas = document.querySelector('canvas'),
+        ctx = canvas.getContext('2d'),
+        status = document.querySelector('output');
+      let game,
+        running = false;
+      function load(time) {
+        game = new Game(assets, LEVELS[4]);
+        game.eggDialogue = null;
+        game.time = time;
+        game.invasion.spawned = EGG_CHART.findIndex((n) => n.at >= time + 0.01);
+        game.update(0);
+        running = false;
+        document.querySelector('#run').textContent = '开始演练';
+        render();
+      }
+      document.querySelector('#warm').onclick = () => load(6);
+      document.querySelector('#final').onclick = () => load(130);
+      document.querySelector('#step').onclick = () => {
+        game.update(0.05);
+        render();
+      };
+      document.querySelector('#run').onclick = () => {
+        running = !running;
+        document.querySelector('#run').textContent = running ? '暂停演练' : '开始演练';
+      };
+      document.querySelector('#narrow').onclick = () => {
+        canvas.classList.toggle('narrow');
+        render();
+      };
+      function point(e) {
+        const r = canvas.getBoundingClientRect();
+        return { x: ((e.clientX - r.left) * 1585) / r.width, y: ((e.clientY - r.top) * 992) / r.height };
+      }
+      canvas.addEventListener('pointerdown', (e) => {
+        game.onPointerMove(point(e));
+        game.onPointerDown(point(e));
+        render();
+      });
+      canvas.addEventListener('pointermove', (e) => game.onPointerMove(point(e)));
+      window.addEventListener('keydown', (e) => {
+        if (!e.isComposing && ['z', 'x'].includes(e.key.toLowerCase())) {
+          e.preventDefault();
+          game.onRhythmKey(e.key, e.repeat);
+          render();
+        }
+      });
+      function render() {
+        game.draw(ctx);
+        const first = game.invasion.eggs.find((e) => !e.shattered);
+        const p = first ? eggCenter(first) : null;
+        status.textContent = `${game.time.toFixed(2)}秒 | ${game.state} | 打碎${game.invasion.broken} | 漏蛋${game.invasion.missed} | 连击${game.invasion.combo} | 得分${game.invasion.score}${p ? ` | 下一蛋中心 ${p.x.toFixed(1)},${p.y.toFixed(1)} | 目标时刻 ${first.targetAt.toFixed(2)}` : ''} | 反馈 ${game.invasion.feedback.at(-1)?.label ?? '无'}`;
+      }
+      load(6);
+      let last = performance.now();
+      function frame(now) {
+        if (running) {
+          game.update(Math.min(0.05, (now - last) / 1000));
+          render();
+        }
+        last = now;
+        requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    </script>
+  </body>
+</html>

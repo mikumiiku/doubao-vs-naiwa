@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><base href="/"><title>普通奶蛙步态预览</title>
+<style>*{box-sizing:border-box}body{margin:16px;background:#263d34;color:#fff4d5;font:16px system-ui}button{padding:10px;margin:4px;cursor:pointer}button:focus-visible{outline:3px solid #ffd54a}button:hover{filter:brightness(.9)}button:active{transform:translateY(1px)}main{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px}figure{margin:0;background:#192a24}figcaption{padding:8px}canvas{display:block;width:100%;aspect-ratio:320/280}#live{width:min(480px,100%)}</style></head><body>
+<button id="pause" disabled>暂停播放</button><button id="next" disabled>下一帧</button><button id="near" disabled>近脚落地</button><button id="far" disabled>远脚落地</button><p id="status" role="status">加载中</p><canvas id="live" width="320" height="280" aria-label="普通奶蛙连续走路"></canvas><main></main>
+<script type="module">
+import {Assets} from '/src/core/assets.ts';import {Anim,drawWalkingFrog} from '/src/core/anim.ts';
+const assets=new Assets();await assets.load();const anim=new Anim(assets,'ordinary_frog','walk'),live=document.querySelector('#live'),ctx=live.getContext('2d');let paused=false,last=performance.now();
+const names=['近脚落地','近脚支撑','远脚越过','远脚伸出','远脚落地','远脚支撑','近脚越过','近脚伸出'];
+for(let i=0;i<8;i++){const f=document.createElement('figure'),label=document.createElement('figcaption'),c=document.createElement('canvas');label.textContent=`${i+1} · ${names[i]}`;c.width=320;c.height=280;f.append(label,c);document.querySelector('main').append(f);drawWalkingFrog(assets,c.getContext('2d'),'ordinary_frog',i/8*Math.PI*2,160,260,200,true);}
+for(const b of document.querySelectorAll('button'))b.disabled=false;
+function pauseAt(index){paused=true;anim.t=index/8;document.querySelector('#pause').textContent='继续播放';}
+document.querySelector('#pause').onclick=()=>{paused=!paused;document.querySelector('#pause').textContent=paused?'继续播放':'暂停播放';};document.querySelector('#next').onclick=()=>pauseAt((anim.currentIndex()+1)%8);document.querySelector('#near').onclick=()=>pauseAt(0);document.querySelector('#far').onclick=()=>pauseAt(4);
+function frame(now){if(!paused)anim.update(Math.min((now-last)/1000,.05));last=now;ctx.clearRect(0,0,320,280);drawWalkingFrog(assets,ctx,'ordinary_frog',anim.t*Math.PI*2,160,260,200,true);document.querySelector('#status').textContent=`第${anim.currentIndex()+1}帧：${names[anim.currentIndex()]}`;requestAnimationFrame(frame);}requestAnimationFrame(frame);
+</script></body></html>

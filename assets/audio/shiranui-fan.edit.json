@@ -1,0 +1,11 @@
+{
+  "sourceUrl": "https://www.bilibili.com/video/BV1rCwczfE3L/",
+  "sourceFile": "shiranui-fan.source.m4a",
+  "outputFile": "shiranui-fan.m4a",
+  "label": "嘎嘎滴辣虾",
+  "startSeconds": 0,
+  "durationSeconds": 2.2,
+  "playbackRate": 1,
+  "ffmpegArgs": "-ss 0 -t 2.2 -ac 1 -ar 44100 -c:a aac -b:a 128k",
+  "trigger": "不知火蛙开始挥扇时播放一次，完整播放，不按挥扇动画时长截断"
+}

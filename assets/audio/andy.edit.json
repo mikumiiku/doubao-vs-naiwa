@@ -1,0 +1,11 @@
+{
+  "sourceUrl": "https://www.bilibili.com/video/BV18Me36KENT",
+  "source": "andy-source.m4a",
+  "output": "andy.m4a",
+  "sourceDurationSeconds": 5.03873,
+  "startSeconds": 4,
+  "playbackRate": 1,
+  "outputDurationSeconds": 1.038005,
+  "encoding": "mono AAC 128k, 44100 Hz",
+  "note": "撤销尾音时间拉伸，4秒至原片结束原速播放，保留完整升调。"
+}

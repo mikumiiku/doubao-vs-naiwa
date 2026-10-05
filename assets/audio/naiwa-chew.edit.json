@@ -1,0 +1,10 @@
+{
+  "sourceUrl": "https://www.bilibili.com/video/BV1rBN46fEJQ",
+  "source": "naiwa-chew-source.m4a",
+  "output": "naiwa-chew.m4a",
+  "requestedRangeSeconds": [7, 12],
+  "sourceDurationSeconds": 11.331361,
+  "outputDurationSeconds": 4.330998,
+  "ffmpegArgs": "-ss 7 -t 5 -ac 1 -ar 44100 -c:a aac -b:a 128k",
+  "note": "原视频与音轨均止于约 11.33 秒，保留第 7 秒至原片结尾的完整声音，不合成额外尾音。"
+}

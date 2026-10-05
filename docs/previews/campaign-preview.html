@@ -1,0 +1,27 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><base href="/"><title>十关冒险 · 调试演练</title>
+<style>body{margin:12px;background:#fdf3d8;color:#5b2d12;font:16px system-ui}button{padding:10px;margin:4px;cursor:pointer}button:focus-visible{outline:3px solid #8a5a28}canvas{display:block;width:min(100%,1200px);height:auto}canvas.narrow{width:min(100%,420px)}output{display:block;min-height:44px}#controls{max-width:1200px}</style></head><body>
+<div id="controls"></div><button id="toggle">暂停演练</button><button id="step">推进一秒</button><button id="roster">查看全部角色</button><button id="narrow">窄屏预览</button><output id="status" aria-live="polite">正在加载</output><canvas width="1585" height="992" aria-label="游戏战场"></canvas>
+<script type="module">
+import { Assets } from '/src/core/assets.ts'; import { Game } from '/src/game/game.ts';
+import { LEVELS } from '/src/game/config.ts'; import { Defender } from '/src/game/entities.ts';
+import { DEFENDERS, ATTACKERS } from '/src/game/units.ts'; import { cellCenterX, rowFootY } from '/src/game/grid.ts';
+import { eggCenter } from '/src/game/special.ts';
+import { EggDialogueView } from '/src/game/eggdialogue.ts';
+const assets=new Assets(); await assets.load(); const canvas=document.querySelector('canvas'),ctx=canvas.getContext('2d');
+const dialogue=new EggDialogueView(assets,canvas);
+let game=new Game(assets,LEVELS[0]),running=true,last=performance.now(); const status=document.querySelector('#status');
+for(const level of LEVELS){const button=document.createElement('button');button.textContent=`第${level.id}关 ${level.name}`;button.onclick=()=>{game=new Game(assets,level);running=true;document.querySelector('#toggle').textContent='暂停演练'};document.querySelector('#controls').append(button)}
+document.querySelector('#toggle').onclick=()=>{running=!running;document.querySelector('#toggle').textContent=running?'暂停演练':'继续演练'};
+document.querySelector('#step').onclick=()=>{for(let i=0;i<120;i++)game.update(1/120);render()};
+document.querySelector('#narrow').onclick=()=>{canvas.classList.toggle('narrow');document.querySelector('#narrow').textContent=canvas.classList.contains('narrow')?'恢复宽屏':'窄屏预览'};
+document.querySelector('#roster').onclick=()=>{
+game=new Game(assets,LEVELS[8]);game.firstFrogAt=Infinity;game.bannerT=0;running=false;
+DEFENDERS.forEach((def,i)=>{const col=i%5,row=Math.floor(i/5);game.defenders.push(new Defender(def,col,row,cellCenterX(col),rowFootY(row),assets))});
+Object.keys(ATTACKERS).forEach((id,i)=>{game.spawnAttacker(3,id);game.attackers.at(-1).x=cellCenterX(i)});render();document.querySelector('#toggle').textContent='继续演练'};
+function point(e){const r=canvas.getBoundingClientRect();return{x:(e.clientX-r.left)*1585/r.width,y:(e.clientY-r.top)*992/r.height}}
+canvas.addEventListener('pointerdown',e=>game.onPointerDown(point(e)));canvas.addEventListener('pointermove',e=>game.onPointerMove(point(e)));canvas.addEventListener('pointerup',()=>game.onPointerUp());
+window.addEventListener('keydown',e=>{if(!e.isComposing&&['z','x'].includes(e.key.toLowerCase())){e.preventDefault();game.onRhythmKey(e.key,e.repeat)}});
+function render(){game.draw(ctx);dialogue.sync(game);const eggs=game.invasion?.eggs.filter(e=>!e.shattered).map(e=>{const p=eggCenter(e);return`奶蛋中心 ${Math.round(p.x)},${Math.round(p.y)}`}).join('；')??'';
+status.textContent=`第${game.level.id}关 ${game.level.name} | ${game.state} | ${game.time.toFixed(1)}秒 | 豆包${game.defenders.length} | 奶蛙${game.attackers.length}${game.invasion?` | 打碎${game.invasion.broken} | 漏掉${game.invasion.missed} | ${eggs}`:''}${game.conveyor?` | 卡牌${game.conveyor.cards.length} | 选中${game.placing??'无'}`:''}`}
+function loop(now){const dt=Math.min(.05,(now-last)/1000);last=now;if(running)game.update(dt);render();requestAnimationFrame(loop)}requestAnimationFrame(loop);
+</script></body></html>

@@ -1,0 +1,105 @@
+[
+  {
+    "id": "tangbao_doubao",
+    "name": "糖包",
+    "file": "assets/characters/defenders/tangbao_doubao.png",
+    "rows": 2,
+    "prompt": "Create ONE production transparent sprite atlas for 糖包 for a cute tower defense game. The attached girl reference is style and character identity ONLY. Same Chinese Doubao chibi young woman, short straight chocolate-brown bob, huge brown eyes, Pixar-style smooth soft 3D render, full body, toy proportions, warm lighting. pastel pink candy hoodie, very oversized round hard-candy shield held in both hands, clueless cute determined face. STRICT atlas: landscape image, exactly FOUR equal columns and TWO equal rows, no borders/no labels/no text. Each of the EIGHT cells contains one complete fully visible character centered with generous transparent margins, matching physical height and same foot baseline. All poses face RIGHT, three quarter side view. Top row four quiet idle variations, subtle breathing/blink; bottom row four consecutive action stages preparation, windup, brace the enormous spiral candy shield and scatter three tiny candy pieces, recovery. Do not include projectiles crossing cell boundaries, no extra characters, no floating props outside cell, no realistic weapons, no scenery, genuinely transparent background. Preserve hairstyle and facial identity in all eight frames. Cell art remains separate with clear empty gutters.",
+    "width": 1774,
+    "height": 887
+  },
+  {
+    "id": "yizhen_doubao",
+    "name": "一针见血豆包",
+    "file": "assets/characters/defenders/yizhen_doubao.png",
+    "rows": 2,
+    "prompt": "Create ONE production transparent sprite atlas for 一针见血豆包 for a cute tower defense game. The attached girl reference is style and character identity ONLY. Same Chinese Doubao chibi young woman, short straight chocolate-brown bob, huge brown eyes, Pixar-style smooth soft 3D render, full body, toy proportions, warm lighting. navy coat, red scarf, holding a slender silver knitting needle crossbow with a bean-shaped needle bolt. STRICT atlas: landscape image, exactly FOUR equal columns and TWO equal rows, no borders/no labels/no text. Each of the EIGHT cells contains one complete fully visible character centered with generous transparent margins, matching physical height and same foot baseline. All poses face RIGHT, three quarter side view. Top row four quiet idle variations, subtle breathing/blink; bottom row four consecutive action stages preparation, windup, pull the needle crossbow and fire towards the right, sharp confident expression, recovery. Do not include projectiles crossing cell boundaries, no extra characters, no floating props outside cell, no realistic weapons, no scenery, genuinely transparent background. Preserve hairstyle and facial identity in all eight frames. Cell art remains separate with clear empty gutters.",
+    "width": 1774,
+    "height": 887
+  },
+  {
+    "id": "zhaxin_doubao",
+    "name": "扎心豆包",
+    "file": "assets/characters/defenders/zhaxin_doubao.png",
+    "rows": 2,
+    "prompt": "Create ONE production transparent sprite atlas for 扎心豆包 for a cute tower defense game. The attached girl reference is style and character identity ONLY. Same Chinese Doubao chibi young woman, short straight chocolate-brown bob, huge brown eyes, Pixar-style smooth soft 3D render, full body, toy proportions, warm lighting. burgundy outfit and carrying a large red heart shaped bean bomb with a short unlit fuse, cheeky grin. STRICT atlas: landscape image, exactly FOUR equal columns and TWO equal rows, no borders/no labels/no text. Each of the EIGHT cells contains one complete fully visible character centered with generous transparent margins, matching physical height and same foot baseline. All poses face RIGHT, three quarter side view. Top row four quiet idle variations, subtle breathing/blink; bottom row four consecutive action stages preparation, windup, light the heart bomb fuse, heart grows glowing but body remains intact, exaggerated cute shocked face, recovery. Do not include projectiles crossing cell boundaries, no extra characters, no floating props outside cell, no realistic weapons, no scenery, genuinely transparent background. Preserve hairstyle and facial identity in all eight frames. Cell art remains separate with clear empty gutters.",
+    "width": 1774,
+    "height": 887
+  },
+  {
+    "id": "fudu_doubao",
+    "name": "复读豆包",
+    "file": "assets/characters/defenders/fudu_doubao.png",
+    "rows": 2,
+    "prompt": "Create ONE production transparent sprite atlas for 复读豆包 for a cute tower defense game. The attached girl reference is style and character identity ONLY. Same Chinese Doubao chibi young woman, short straight chocolate-brown bob, huge brown eyes, Pixar-style smooth soft 3D render, full body, toy proportions, warm lighting. lilac headphones, purple jacket, a portable twin speaker boombox, playful girl DJ. STRICT atlas: landscape image, exactly FOUR equal columns and TWO equal rows, no borders/no labels/no text. Each of the EIGHT cells contains one complete fully visible character centered with generous transparent margins, matching physical height and same foot baseline. All poses face RIGHT, three quarter side view. Top row four quiet idle variations, subtle breathing/blink; bottom row four consecutive action stages preparation, windup, lift a hand to conduct while twin speakers pulse with small lavender music rings, recovery. Do not include projectiles crossing cell boundaries, no extra characters, no floating props outside cell, no realistic weapons, no scenery, genuinely transparent background. Preserve hairstyle and facial identity in all eight frames. Cell art remains separate with clear empty gutters.",
+    "width": 1774,
+    "height": 887
+  },
+  {
+    "id": "moyu_doubao",
+    "name": "摸鱼豆包",
+    "file": "assets/characters/defenders/moyu_doubao.png",
+    "rows": 2,
+    "prompt": "Create ONE production transparent sprite atlas for 摸鱼豆包 for a cute tower defense game. The attached girl reference is style and character identity ONLY. Same Chinese Doubao chibi young woman, short straight chocolate-brown bob, huge brown eyes, Pixar-style smooth soft 3D render, full body, toy proportions, warm lighting. mint green raincoat and cream boots, lounging on a tiny wooden stool with a fish-shaped water spray bottle. STRICT atlas: landscape image, exactly FOUR equal columns and TWO equal rows, no borders/no labels/no text. Each of the EIGHT cells contains one complete fully visible character centered with generous transparent margins, matching physical height and same foot baseline. All poses face RIGHT, three quarter side view. Top row four quiet idle variations, subtle breathing/blink; bottom row four consecutive action stages preparation, windup, squirt a small turquoise puddle towards the right with the fish spray bottle, recovery. Do not include projectiles crossing cell boundaries, no extra characters, no floating props outside cell, no realistic weapons, no scenery, genuinely transparent background. Preserve hairstyle and facial identity in all eight frames. Cell art remains separate with clear empty gutters.",
+    "width": 1774,
+    "height": 887
+  },
+  {
+    "id": "luanhui_doubao",
+    "name": "已读乱回豆包",
+    "file": "assets/characters/defenders/luanhui_doubao.png",
+    "rows": 2,
+    "prompt": "Create ONE production transparent sprite atlas for 已读乱回豆包 for a cute tower defense game. The attached girl reference is style and character identity ONLY. Same Chinese Doubao chibi young woman, short straight chocolate-brown bob, huge brown eyes, Pixar-style smooth soft 3D render, full body, toy proportions, warm lighting. orange courier coat, cream satchel stuffed with bean envelopes, three tiny paper bean airplanes in her hands, mischievous expression. STRICT atlas: landscape image, exactly FOUR equal columns and TWO equal rows, no borders/no labels/no text. Each of the EIGHT cells contains one complete fully visible character centered with generous transparent margins, matching physical height and same foot baseline. All poses face RIGHT, three quarter side view. Top row four quiet idle variations, subtle breathing/blink; bottom row four consecutive action stages preparation, windup, throw three paper bean airplanes towards the right at three different angles, recovery. Do not include projectiles crossing cell boundaries, no extra characters, no floating props outside cell, no realistic weapons, no scenery, genuinely transparent background. Preserve hairstyle and facial identity in all eight frames. Cell art remains separate with clear empty gutters.",
+    "width": 1774,
+    "height": 887
+  },
+  {
+    "id": "kaimen_doubao",
+    "name": "开门见山豆包",
+    "file": "assets/characters/defenders/kaimen_doubao.png",
+    "rows": 2,
+    "prompt": "Create ONE production transparent sprite atlas for 开门见山豆包 for a cute tower defense game. The attached girl reference is style and character identity ONLY. Same Chinese Doubao chibi young woman, short straight chocolate-brown bob, huge brown eyes, Pixar-style smooth soft 3D render, full body, toy proportions, warm lighting. dark brown hiking jacket, lifting a chunky toy-sized wooden door with small brass knob as a hammer, determined squat stance. STRICT atlas: landscape image, exactly FOUR equal columns and TWO equal rows, no borders/no labels/no text. Each of the EIGHT cells contains one complete fully visible character centered with generous transparent margins, matching physical height and same foot baseline. All poses face RIGHT, three quarter side view. Top row four quiet idle variations, subtle breathing/blink; bottom row four consecutive action stages preparation, windup, slam the small wooden door down in front towards the right, little puff of dust, recovery. Do not include projectiles crossing cell boundaries, no extra characters, no floating props outside cell, no realistic weapons, no scenery, genuinely transparent background. Preserve hairstyle and facial identity in all eight frames. Cell art remains separate with clear empty gutters.",
+    "width": 1774,
+    "height": 887
+  },
+  {
+    "id": "hoola_frog",
+    "name": "吼啦奶蛙",
+    "file": "assets/characters/attackers/hoola_frog.png",
+    "rows": 3,
+    "prompt": "Create a production transparent sprite atlas for a funny yellow milk-frog meme enemy \"吼啦奶蛙\". Style reference is the attached yellow milk frog ONLY; keep identical warm golden yellow pear body, green eyes, brown little mittens and cream belly. This variant wears a small bright red cheerleader headband, has TOY roller skates and holds a red-and-cream toy megaphone. Funny cheerful, harmless meme mood, no anatomy horror. Exactly FOUR equal columns by THREE equal rows, landscape canvas, 12 separate full-body characters, constant scale, same foot baseline, clear transparent gutters. Top row: 4 subtle continuous SKATING glide poses facing LEFT, skates stay under body (not walking). Middle row: 4 shout animations raising the megaphone, opening mouth, leaning forward shouting, returning. Bottom row: 4 defeat stages: wobble, sit down surprised, fall sideways, lying on side with dropped megaphone still inside cell. All complete bodies, no cutoffs, no labels, no text, no crossing cells. Genuinely transparent background, polished soft 3D cartoon render consistent with reference.",
+    "width": 1448,
+    "height": 1086
+  },
+  {
+    "id": "shiranui_frog",
+    "name": "不知火蛙",
+    "kind": "attacker",
+    "file": "assets/characters/attackers/不知火蛙.png",
+    "rows": 5,
+    "width": 1122,
+    "height": 1402,
+    "prompt": "Create ONE production game sprite atlas on true transparent background based closely on the provided yellow Naiwa fan costume reference. Character named Shiranui Frog: plump smooth golden yellow frog/meme creature, bulging green eyes, huge cheerful mouth, black swept hair tied back, orange red kimono with gold floral embroidery, cream lapels, black waist sash and black little boots. White folding fan with dark handle. Cute funny meme, polished sculpted/cartoon game rendering. Every pose faces LEFT in the same three-quarter side view, nearest leg and far leg distinctly readable, same costume and face and scale. EXACT atlas grid FOUR columns and FIVE rows = TWENTY equal cells. No text, no dividers, no extra characters, generous completely transparent margins inside every cell; all fan tips and hands wholly contained. First TWO rows (8 frames reading across then next row) are ONE complete smooth alternating left-right walk cycle: left boot forward contact, left down, left passing, left up; RIGHT boot forward contact, right down, right passing, right up. BOTH legs remain present, avoid repeated contact poses, fan held calmly to side. Third row FOUR frames is one planted FEET-STILL fan swing: lift folded fan, fan opened raised, powerful sweep toward LEFT, recover open fan low. Fourth row FOUR frames biting in front facing LEFT: lean mouth forward, wide mouth, close mouth bite, recoil; fan in other hand. Fifth row FOUR frames cartoon defeat without gore: stumble, buckle, tip over LEFT, lie flat LEFT with closed eyes and dropped fan; dying poses progressively decrease height, lying is wider but still within cell. No pink effects drawn in atlas: wind will be rendered separately by game. All characters full body. Flat invisible background with real alpha, not checkerboard, no backdrop or floors. Preserve recognizability of reference.\n",
+    "animations": {
+      "walk": {
+        "rows": [
+          0,
+          1
+        ],
+        "frames": 8
+      },
+      "fan": {
+        "file": "assets/characters/attackers/不知火蛙-挥扇.png",
+        "frames": 4
+      },
+      "attack": {
+        "row": 3,
+        "frames": 4
+      },
+      "death": {
+        "row": 4,
+        "frames": 4
+      }
+    }
+  }
+]
